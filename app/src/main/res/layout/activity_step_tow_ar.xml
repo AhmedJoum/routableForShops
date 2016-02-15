@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="right"
+    tools:context="com.example.carsiow.rmsapp.StepTowActivity">
+
+    <LinearLayout
+        android:id="@+id/pbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="1">
+        <ProgressBar
+            android:id="@+id/StepTwo_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/stepTwo_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="75dp"
+        android:isScrollContainer="false"
+        android:background="#e4e4e4">
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الخدمات المكتبية"
+                android:id="@+id/checkBox"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="fill"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="التنظيف التجاري والسكني"
+                android:id="@+id/checkBox2"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تموين الشركات"
+                android:id="@+id/checkBox3"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="النقل للشركات"
+                android:id="@+id/checkBox4"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText4"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="المساعدة المكتبية"
+                android:id="@+id/checkBox5"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText5"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="مكافحة الحشرات"
+                android:id="@+id/checkBox6"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText6"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="البيئة والنفايات"
+                android:id="@+id/checkBox7"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText7"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تنسيق الحدائق"
+                android:id="@+id/checkBox8"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText8"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="خدمات صيانة المركبات"
+                android:id="@+id/checkBox9"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText9"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="خدمات التوظيف"
+                android:id="@+id/checkBox10"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText10"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="التوريد المكتبي"
+                android:id="@+id/checkBox11"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText11"
+                android:layout_gravity="fill"
+                android:textColor="@color/close"
+                android:visibility="gone"
+                android:hint="ملاحظات"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الصيانة الهندسية: "
+                android:id="@+id/checkBoxX"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/checkBox7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <LinearLayout
+                android:id="@+id/EngMaintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="اصلاحات داخلية"
+                    android:id="@+id/checkBox12"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText12"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="اصلاح وديكور"
+                    android:id="@+id/checkBox13"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText13"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تجديد"
+                    android:id="@+id/checkBox14"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText14"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تسقيف"
+                    android:id="@+id/checkBox15"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText15"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" صيانه الكهرباء"
+                    android:id="@+id/checkBox16"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText16"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="سباكة"
+                    android:id="@+id/checkBox17"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText17"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="نجارة"
+                    android:id="@+id/checkBox18"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText18"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تكييف"
+                    android:id="@+id/checkBox19"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText19"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="اعادة بناء"
+                    android:id="@+id/checkBox20"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/checkBox7"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText20"
+                    android:layout_gravity="fill"
+                    android:textColor="@color/close"
+                    android:visibility="gone"
+                    android:hint="ملاحظات"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:src="@android:drawable/ic_media_next"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/stepTwo_form"
+        android:layout_alignEnd="@+id/stepTwo_form" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignTop="@+id/backBtn"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_media_previous"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/nextBtn" />
+
+</RelativeLayout>
