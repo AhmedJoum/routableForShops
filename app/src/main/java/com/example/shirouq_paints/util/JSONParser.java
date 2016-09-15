@@ -1,4 +1,4 @@
-package com.example.carsiow.rmsapp;
+package com.example.shirouq_paints.util;
 
         import java.io.BufferedReader;
         import java.io.IOException;
@@ -19,8 +19,6 @@ package com.example.carsiow.rmsapp;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-        import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
 
 public class JSONParser {

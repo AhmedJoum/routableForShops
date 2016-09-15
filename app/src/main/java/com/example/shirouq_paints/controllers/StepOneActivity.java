@@ -1,4 +1,4 @@
-package com.example.carsiow.rmsapp;
+package com.example.shirouq_paints.controllers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.shirouq_paints.models.Customer;
 
 public class StepOneActivity extends AppCompatActivity {
 
@@ -22,7 +24,7 @@ public class StepOneActivity extends AppCompatActivity {
     FloatingActionButton nextBtn, cancelBtn, logoutBtn;
 
 
-    CustOrder co = new CustOrder();
+    Customer co = new Customer();
     private String Lang;
 
     @Override
@@ -59,8 +61,8 @@ public class StepOneActivity extends AppCompatActivity {
         cancelBtn = (FloatingActionButton) findViewById(R.id.cancelBtn);
         logoutBtn = (FloatingActionButton) findViewById(R.id.LogoutBtn);
 
-        //final CustOrder
-        co =  (CustOrder) getIntent().getSerializableExtra("CustomerOrder");
+        //final Customer
+        co =  (Customer) getIntent().getSerializableExtra("CustomerOrder");
 
         custName.setText(co.getCustName());
         custPhone.setText(co.getCustPhone());

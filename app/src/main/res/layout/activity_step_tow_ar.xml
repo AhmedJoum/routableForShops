@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="right"
-    tools:context="com.example.carsiow.rmsapp.StepTowActivity">
+    tools:context="com.example.shirouq_paints.controllers.StepTowActivity">
 
     <LinearLayout
         android:id="@+id/pbar"
@@ -60,6 +60,7 @@
                 android:id="@+id/editText"
                 android:textColor="@color/close"
                 android:visibility="gone"
+                android:inputType="number"
                 android:hint="ملاحظات"/>
 
             <CheckBox
@@ -273,197 +274,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <LinearLayout
-                android:id="@+id/EngMaintenance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:weightSum="1"
-                android:layout_marginLeft="15dp"
-                android:visibility="gone">
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="اصلاحات داخلية"
-                    android:id="@+id/checkBox12"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText12"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="اصلاح وديكور"
-                    android:id="@+id/checkBox13"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText13"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="تجديد"
-                    android:id="@+id/checkBox14"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText14"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="تسقيف"
-                    android:id="@+id/checkBox15"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText15"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" صيانه الكهرباء"
-                    android:id="@+id/checkBox16"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText16"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="سباكة"
-                    android:id="@+id/checkBox17"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText17"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="نجارة"
-                    android:id="@+id/checkBox18"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText18"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="تكييف"
-                    android:id="@+id/checkBox19"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText19"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-                <CheckBox
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="اعادة بناء"
-                    android:id="@+id/checkBox20"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@+id/checkBox7"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText20"
-                    android:layout_gravity="fill"
-                    android:textColor="@color/close"
-                    android:visibility="gone"
-                    android:hint="ملاحظات"/>
-
-
-            </LinearLayout>
 
 
 

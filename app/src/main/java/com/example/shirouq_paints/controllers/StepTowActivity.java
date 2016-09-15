@@ -1,4 +1,4 @@
-package com.example.carsiow.rmsapp;
+package com.example.shirouq_paints.controllers;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -16,14 +16,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Toast;
+
+import com.example.shirouq_paints.models.Customer;
+import com.example.shirouq_paints.util.JSONParser;
+import com.example.shirouq_paints.util.LocListener;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,12 +39,11 @@ import java.util.List;
 public class StepTowActivity extends AppCompatActivity {
 
     private CheckBox mCB1, mCB2, mCB3, mCB4, mCB5, mCB6, mCB7, mCB8, mCB9, mCB10,
-                mCB11, mCB12, mCB13, mCB14, mCB15, mCB16, mCB17,
-                mCB18, mCB19, mCB20, mCBX;
+            mCB11, mCB12, mCB13, mCB14, mCB15, mCB16, mCB17,
+            mCB18, mCB19, mCB20, mCBX;
 
-    private EditText mET1, mET2,mET3,mET4,mET5,mET6,mET7,mET8,mET9,mET10
-            ,mET11,mET12,mET13,mET14,mET15,
-            mET16,mET17,mET18,mET19,mET20;
+    private EditText mET1, mET2, mET3, mET4, mET5, mET6, mET7, mET8, mET9, mET10, mET11, mET12, mET13, mET14, mET15,
+            mET16, mET17, mET18, mET19, mET20;
 
 
     private View mProgressView;
@@ -58,15 +59,13 @@ public class StepTowActivity extends AppCompatActivity {
     private static final String TAG_ORDER_ID = "order_id";
 
 
-
     FloatingActionButton nextBtn;
-    FloatingActionButton backBtn , cancelBtn;
+    FloatingActionButton backBtn, cancelBtn;
 
     List<Integer> SelectedServices;
     HashMap<Integer, String> SelectedServiceDescription;
 
-    CustOrder co = new CustOrder();//(CustOrder) getIntent().getSerializableExtra("CustomerOrder");
-
+    Customer co = new Customer();//(Customer) getIntent().getSerializableExtra("CustomerOrder");
 
 
     @Override
@@ -75,7 +74,7 @@ public class StepTowActivity extends AppCompatActivity {
 
         Lang = getIntent().getStringExtra("Lang");
 
-        if(Lang.equals("English")) {
+        if (Lang.equals("English")) {
             setContentView(R.layout.activity_step_tow);
             notSelectError = "Please at least select one service...";
             GPSError = "GPS not Enabled..";
@@ -149,10 +148,10 @@ public class StepTowActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.StepTwo_progress);
         mEngMaintenance = findViewById(R.id.EngMaintenance);
 
-        co = (CustOrder) getIntent().getSerializableExtra("CustomerOrder");
+        co = (Customer) getIntent().getSerializableExtra("CustomerOrder");
 
-        SelectedServices = co.getServices();
-        SelectedServiceDescription = co.getServicesDescription();
+//        SelectedServices = co.getServices();
+//        SelectedServiceDescription = co.getServicesDescription();
 
         //Toast.makeText(getApplicationContext(), co.getCustEmail() + "  " + co.getSmId() , Toast.LENGTH_LONG).show();
         final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -161,7 +160,7 @@ public class StepTowActivity extends AppCompatActivity {
         //
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, l);
 
-        setCustServicesAndDescription();
+//        setCustServicesAndDescription();
         CBonCkeck();
 
 
@@ -175,13 +174,13 @@ public class StepTowActivity extends AppCompatActivity {
                 } else {
                     getCustServicesAndDescription();
 
-                    co.setServices(SelectedServices);
-                    co.setServicesDescription(SelectedServiceDescription);
+//                    co.setServices(SelectedServices);
+//                    co.setServicesDescription(SelectedServiceDescription);
 
                     //if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                      //  Toast.makeText(getApplicationContext(), GPSError, Toast.LENGTH_LONG).show();
+                    //  Toast.makeText(getApplicationContext(), GPSError, Toast.LENGTH_LONG).show();
                     //} else
-                if(!CheckServiceDescription()) {
+                    if (!CheckServiceDescription()) {
                         Toast.makeText(getApplicationContext(), DescriptionServiceError, Toast.LENGTH_LONG).show();
                     } else {
                         //co.setLon("" + l.getLon());
@@ -215,11 +214,11 @@ public class StepTowActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustOrder custOrder = new CustOrder();
-                custOrder.setSmId(co.getSmId());
+                Customer cust = new Customer();
+//                custOrder.setSmId(co.getSmId());
 
                 Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
-                i.putExtra("CustomerOrder", custOrder);
+                i.putExtra("CustomerOrder", cust);
                 i.putExtra("Lang", Lang);
                 startActivity(i);
             }
@@ -237,104 +236,104 @@ public class StepTowActivity extends AppCompatActivity {
         }
     }
 
-    private void setCustServicesAndDescription() {
-        if (SelectedServices.size() > 0) {
-            for (int i = 0; i < SelectedServices.size(); i++) {
-                switch (co.getServices().get(i)) {
-                    case 1:
-                        mCB1.setChecked(true);
-                        mET1.setText(SelectedServiceDescription.get(1).toString());
-                        break;
-                    case 2:
-                        mCB2.setChecked(true);
-                        mET2.setText(SelectedServiceDescription.get(2).toString());
-                        break;
-                    case 3:
-                        mCB3.setChecked(true);
-                        mET3.setText(SelectedServiceDescription.get(3).toString());
-                        break;
-                    case 4:
-                        mCB4.setChecked(true);
-                        mET4.setText(SelectedServiceDescription.get(4).toString());
-                        break;
-                    case 5:
-                        mCB5.setChecked(true);
-                        mET5.setText(SelectedServiceDescription.get(5).toString());
-                        break;
-                    case 6:
-                        mCB6.setChecked(true);
-                        mET6.setText(SelectedServiceDescription.get(6).toString());
-                        break;
-                    case 7:
-                        mCB7.setChecked(true);
-                        mET7.setText(SelectedServiceDescription.get(7).toString());
-                        break;
-                    case 8:
-                        mCB8.setChecked(true);
-                        mET8.setText(SelectedServiceDescription.get(8).toString());
-                        break;
-                    case 9:
-                        mCB9.setChecked(true);
-                        mET9.setText(SelectedServiceDescription.get(9).toString());
-                        break;
-                    case 10:
-                        mCB10.setChecked(true);
-                        mET10.setText(SelectedServiceDescription.get(10).toString());
-                        break;
-                    case 11:
-                        mCB11.setChecked(true);
-                        mET11.setText(SelectedServiceDescription.get(11).toString());
-                        break;
-                    case 12:
-                        mCBX.isChecked();
-                        mCB12.setChecked(true);
-                        mET12.setText(SelectedServiceDescription.get(12).toString());
-                        break;
-                    case 13:
-                        mCBX.isChecked();
-                        mCB13.setChecked(true);
-                        mET13.setText(SelectedServiceDescription.get(13).toString());
-                        break;
-                    case 14:
-                        mCBX.isChecked();
-                        mCB14.setChecked(true);
-                        mET14.setText(SelectedServiceDescription.get(14).toString());
-                        break;
-                    case 15:
-                        mCBX.isChecked();
-                        mCB15.setChecked(true);
-                        mET15.setText(SelectedServiceDescription.get(15).toString());
-                        break;
-                    case 16:
-                        mCBX.isChecked();
-                        mCB16.setChecked(true);
-                        mET16.setText(SelectedServiceDescription.get(16).toString());
-                        break;
-                    case 17:
-                        mCBX.isChecked();
-                        mCB17.setChecked(true);
-                        mET17.setText(SelectedServiceDescription.get(17).toString());
-                        break;
-                    case 18:
-                        mCBX.isChecked();
-                        mCB18.setChecked(true);
-                        mET18.setText(SelectedServiceDescription.get(18).toString());
-                        break;
-                    case 19:
-                        mCBX.isChecked();
-                        mCB19.setChecked(true);
-                        mET19.setText(SelectedServiceDescription.get(19).toString());
-                        break;
-                    case 20:
-                        mCBX.isChecked();
-                        mCB20.setChecked(true);
-                        mET20.setText(SelectedServiceDescription.get(12).toString());
-                        break;
-
-                }
-            }
-        }
-    }
+//    private void setCustServicesAndDescription() {
+//        if (SelectedServices.size() > 0) {
+//            for (int i = 0; i < SelectedServices.size(); i++) {
+//                switch (co.getServices().get(i)) {
+//                    case 1:
+//                        mCB1.setChecked(true);
+//                        mET1.setText(SelectedServiceDescription.get(1).toString());
+//                        break;
+//                    case 2:
+//                        mCB2.setChecked(true);
+//                        mET2.setText(SelectedServiceDescription.get(2).toString());
+//                        break;
+//                    case 3:
+//                        mCB3.setChecked(true);
+//                        mET3.setText(SelectedServiceDescription.get(3).toString());
+//                        break;
+//                    case 4:
+//                        mCB4.setChecked(true);
+//                        mET4.setText(SelectedServiceDescription.get(4).toString());
+//                        break;
+//                    case 5:
+//                        mCB5.setChecked(true);
+//                        mET5.setText(SelectedServiceDescription.get(5).toString());
+//                        break;
+//                    case 6:
+//                        mCB6.setChecked(true);
+//                        mET6.setText(SelectedServiceDescription.get(6).toString());
+//                        break;
+//                    case 7:
+//                        mCB7.setChecked(true);
+//                        mET7.setText(SelectedServiceDescription.get(7).toString());
+//                        break;
+//                    case 8:
+//                        mCB8.setChecked(true);
+//                        mET8.setText(SelectedServiceDescription.get(8).toString());
+//                        break;
+//                    case 9:
+//                        mCB9.setChecked(true);
+//                        mET9.setText(SelectedServiceDescription.get(9).toString());
+//                        break;
+//                    case 10:
+//                        mCB10.setChecked(true);
+//                        mET10.setText(SelectedServiceDescription.get(10).toString());
+//                        break;
+//                    case 11:
+//                        mCB11.setChecked(true);
+//                        mET11.setText(SelectedServiceDescription.get(11).toString());
+//                        break;
+//                    case 12:
+//                        mCBX.isChecked();
+//                        mCB12.setChecked(true);
+//                        mET12.setText(SelectedServiceDescription.get(12).toString());
+//                        break;
+//                    case 13:
+//                        mCBX.isChecked();
+//                        mCB13.setChecked(true);
+//                        mET13.setText(SelectedServiceDescription.get(13).toString());
+//                        break;
+//                    case 14:
+//                        mCBX.isChecked();
+//                        mCB14.setChecked(true);
+//                        mET14.setText(SelectedServiceDescription.get(14).toString());
+//                        break;
+//                    case 15:
+//                        mCBX.isChecked();
+//                        mCB15.setChecked(true);
+//                        mET15.setText(SelectedServiceDescription.get(15).toString());
+//                        break;
+//                    case 16:
+//                        mCBX.isChecked();
+//                        mCB16.setChecked(true);
+//                        mET16.setText(SelectedServiceDescription.get(16).toString());
+//                        break;
+//                    case 17:
+//                        mCBX.isChecked();
+//                        mCB17.setChecked(true);
+//                        mET17.setText(SelectedServiceDescription.get(17).toString());
+//                        break;
+//                    case 18:
+//                        mCBX.isChecked();
+//                        mCB18.setChecked(true);
+//                        mET18.setText(SelectedServiceDescription.get(18).toString());
+//                        break;
+//                    case 19:
+//                        mCBX.isChecked();
+//                        mCB19.setChecked(true);
+//                        mET19.setText(SelectedServiceDescription.get(19).toString());
+//                        break;
+//                    case 20:
+//                        mCBX.isChecked();
+//                        mCB20.setChecked(true);
+//                        mET20.setText(SelectedServiceDescription.get(12).toString());
+//                        break;
+//
+//                }
+//            }
+//        }
+//    }
 
     private void CBonCkeck() {
         mCB1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -480,17 +479,20 @@ public class StepTowActivity extends AppCompatActivity {
         mCBX.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){ mEngMaintenance.setVisibility(View.VISIBLE);}
-                else mEngMaintenance.setVisibility(View.GONE);
+                if (isChecked) {
+                    mEngMaintenance.setVisibility(View.VISIBLE);
+                } else mEngMaintenance.setVisibility(View.GONE);
             }
         });
     }
 
-    private void nextBtnClick() {}
+    private void nextBtnClick() {
+    }
 
     private void backBtnClick() {
-       if(getCustServicesAndDescription())
-            co.setServices(SelectedServices);
+        if (getCustServicesAndDescription()) {
+//            co.setServices(SelectedServices);
+        }
 
         Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
         i.putExtra("CustomerOrder", co);
@@ -501,45 +503,65 @@ public class StepTowActivity extends AppCompatActivity {
     private boolean getCustServicesAndDescription() {
         SelectedServices = new ArrayList<Integer>();
         if (mCB1.isChecked())
-            SelectedServices.add(1); SelectedServiceDescription.put(1, mET1.getText().toString());
+            SelectedServices.add(1);
+        SelectedServiceDescription.put(1, mET1.getText().toString());
         if (mCB2.isChecked())
-            SelectedServices.add(2); SelectedServiceDescription.put(2, mET2.getText().toString());
+            SelectedServices.add(2);
+        SelectedServiceDescription.put(2, mET2.getText().toString());
         if (mCB3.isChecked())
-            SelectedServices.add(3); SelectedServiceDescription.put(3, mET3.getText().toString());
+            SelectedServices.add(3);
+        SelectedServiceDescription.put(3, mET3.getText().toString());
         if (mCB4.isChecked())
-            SelectedServices.add(4); SelectedServiceDescription.put(4, mET4.getText().toString());
+            SelectedServices.add(4);
+        SelectedServiceDescription.put(4, mET4.getText().toString());
         if (mCB5.isChecked())
-            SelectedServices.add(5); SelectedServiceDescription.put(5, mET5.getText().toString());
+            SelectedServices.add(5);
+        SelectedServiceDescription.put(5, mET5.getText().toString());
         if (mCB6.isChecked())
-            SelectedServices.add(6); SelectedServiceDescription.put(6, mET6.getText().toString());
+            SelectedServices.add(6);
+        SelectedServiceDescription.put(6, mET6.getText().toString());
         if (mCB7.isChecked())
-            SelectedServices.add(7); SelectedServiceDescription.put(7, mET7.getText().toString());
+            SelectedServices.add(7);
+        SelectedServiceDescription.put(7, mET7.getText().toString());
         if (mCB8.isChecked())
-            SelectedServices.add(8); SelectedServiceDescription.put(8, mET8.getText().toString());
+            SelectedServices.add(8);
+        SelectedServiceDescription.put(8, mET8.getText().toString());
         if (mCB9.isChecked())
-            SelectedServices.add(9); SelectedServiceDescription.put(9, mET9.getText().toString());
+            SelectedServices.add(9);
+        SelectedServiceDescription.put(9, mET9.getText().toString());
         if (mCB10.isChecked())
-            SelectedServices.add(10); SelectedServiceDescription.put(10, mET10.getText().toString());
+            SelectedServices.add(10);
+        SelectedServiceDescription.put(10, mET10.getText().toString());
         if (mCB11.isChecked())
-            SelectedServices.add(11); SelectedServiceDescription.put(11, mET11.getText().toString());
+            SelectedServices.add(11);
+        SelectedServiceDescription.put(11, mET11.getText().toString());
         if (mCB12.isChecked())
-            SelectedServices.add(12); SelectedServiceDescription.put(12, mET12.getText().toString());
+            SelectedServices.add(12);
+        SelectedServiceDescription.put(12, mET12.getText().toString());
         if (mCB13.isChecked())
-            SelectedServices.add(13); SelectedServiceDescription.put(13, mET13.getText().toString());
+            SelectedServices.add(13);
+        SelectedServiceDescription.put(13, mET13.getText().toString());
         if (mCB14.isChecked())
-            SelectedServices.add(14); SelectedServiceDescription.put(14, mET14.getText().toString());
+            SelectedServices.add(14);
+        SelectedServiceDescription.put(14, mET14.getText().toString());
         if (mCB15.isChecked())
-            SelectedServices.add(15); SelectedServiceDescription.put(15, mET15.getText().toString());
+            SelectedServices.add(15);
+        SelectedServiceDescription.put(15, mET15.getText().toString());
         if (mCB16.isChecked())
-            SelectedServices.add(16); SelectedServiceDescription.put(16, mET16.getText().toString());
+            SelectedServices.add(16);
+        SelectedServiceDescription.put(16, mET16.getText().toString());
         if (mCB17.isChecked())
-            SelectedServices.add(17); SelectedServiceDescription.put(17, mET17.getText().toString());
+            SelectedServices.add(17);
+        SelectedServiceDescription.put(17, mET17.getText().toString());
         if (mCB18.isChecked())
-            SelectedServices.add(18); SelectedServiceDescription.put(18, mET18.getText().toString());
+            SelectedServices.add(18);
+        SelectedServiceDescription.put(18, mET18.getText().toString());
         if (mCB19.isChecked())
-            SelectedServices.add(19); SelectedServiceDescription.put(19, mET19.getText().toString());
+            SelectedServices.add(19);
+        SelectedServiceDescription.put(19, mET19.getText().toString());
         if (mCB20.isChecked())
-            SelectedServices.add(20); SelectedServiceDescription.put(20, mET20.getText().toString());
+            SelectedServices.add(20);
+        SelectedServiceDescription.put(20, mET20.getText().toString());
 
         if (SelectedServices.size() > 0)
             return true;
@@ -549,15 +571,15 @@ public class StepTowActivity extends AppCompatActivity {
     }
 
     private boolean CheckServiceDescription() {
-        for (int i = 0; i < co.getServices().size(); i++)
-        {
-            if(co.getServicesDescription().get(co.getServices().get(i)).equals(""))
-            {
-                return false;
-            } else  {
-                return true;
-            }
-        }
+//        for (int i = 0; i < co.getServices().size(); i++)
+//        {
+//            if(co.getServicesDescription().get(co.getServices().get(i)).equals(""))
+//            {
+//                return false;
+//            } else  {
+//                return true;
+//            }
+//        }
 
         return true;
     }
@@ -620,7 +642,7 @@ public class StepTowActivity extends AppCompatActivity {
          * Creating product
          */
         protected String doInBackground(String... args) {
-            String sm_id = "" + co.getSmId();
+//            String sm_id = "" + co.getSmId();
             String cust_name = co.getCustName();
             String cust_phone = co.getCustPhone();
             String Cust_email = co.getCustEmail();
@@ -633,7 +655,7 @@ public class StepTowActivity extends AppCompatActivity {
             // Building Parameters
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("sm_id", sm_id));
+//            params.add(new BasicNameValuePair("sm_id", sm_id));
             params.add(new BasicNameValuePair("cust_name", cust_name));
             params.add(new BasicNameValuePair("cust_phone", cust_phone));
             params.add(new BasicNameValuePair("cust_email", Cust_email));
@@ -642,18 +664,18 @@ public class StepTowActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("cust_address", CustAddress));
             JSONObject Services = new JSONObject();
             //adding services and its descriptions
-           // try
-           // {
-           //     for(int i = 0; i < co.getServices().size(); i++)
-           //     {
-           //         Services.put("service_id", "" + co.getServices().get(i));
-           //         Services.put("service_description", "" + co.getServicesDescription().get(co.getServices().get(i)));
-           //     }
+            // try
+            // {
+            //     for(int i = 0; i < co.getServices().size(); i++)
+            //     {
+            //         Services.put("service_id", "" + co.getServices().get(i));
+            //         Services.put("service_description", "" + co.getServicesDescription().get(co.getServices().get(i)));
+            //     }
 //
-           // }
-           // catch (JSONException e){e.printStackTrace();}
+            // }
+            // catch (JSONException e){e.printStackTrace();}
 
-           // params.add(new BasicNameValuePair("services", Services.toString()));
+            // params.add(new BasicNameValuePair("services", Services.toString()));
             // getting JSON Object
             // Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_save_order, "GET", params);
@@ -675,16 +697,16 @@ public class StepTowActivity extends AppCompatActivity {
 
                     if (success == 1) {
                         //jrba mn '3iir al for
-                         for (int i = 0; i < co.getServices().size(); i++) {
-                             List<NameValuePair> paramsOS = new ArrayList<NameValuePair>();
-                             paramsOS.add(new BasicNameValuePair("order_id", "" + order_id));
-                             paramsOS.add(new BasicNameValuePair("service_id", "" + co.getServices().get(i)));
-                             paramsOS.add(new BasicNameValuePair("service_description", "" + co.getServicesDescription().get(co.getServices().get(i))));
-                             JSONObject jsonSO = jsonParser.makeHttpRequest(url_save_order_service, "GET", paramsOS);
-                         }
+//                         for (int i = 0; i < co.getServices().size(); i++) {
+//                             List<NameValuePair> paramsOS = new ArrayList<NameValuePair>();
+//                             paramsOS.add(new BasicNameValuePair("order_id", "" + order_id));
+//                             paramsOS.add(new BasicNameValuePair("service_id", "" + co.getServices().get(i)));
+//                             paramsOS.add(new BasicNameValuePair("service_description", "" + co.getServicesDescription().get(co.getServices().get(i))));
+//                             JSONObject jsonSO = jsonParser.makeHttpRequest(url_save_order_service, "GET", paramsOS);
+//                         }
                         // successfully created product
-                        CustOrder co = new CustOrder();
-                        co.setSmId(((CustOrder) getIntent().getSerializableExtra("CustomerOrder")).getSmId());
+                        Customer co = new Customer();
+//                        co.setSmId(((Customer) getIntent().getSerializableExtra("CustomerOrder")).getSmId());
                         Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
                         i.putExtra("CustomerOrder", co);
                         i.putExtra("Lang", Lang);
@@ -707,7 +729,6 @@ public class StepTowActivity extends AppCompatActivity {
             return null;
 
         }
-
 
 
         /**

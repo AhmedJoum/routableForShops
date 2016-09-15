@@ -1,4 +1,4 @@
-package com.example.carsiow.rmsapp;
+package com.example.shirouq_paints.controllers;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,7 +15,6 @@ import android.app.LoaderManager.LoaderCallbacks;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,6 +41,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shirouq_paints.models.Customer;
+import com.example.shirouq_paints.models.Salesman;
+import com.example.shirouq_paints.util.JSONParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +92,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static String url_sm_login = "http://yiserver.com/rms-ws/sm_login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_SM_ID = "sm_id";
+    private static final String TAG_SM_NAME = "sm_name";
+    private static final String TAG_SM_EMAIL = "sm_email";
+    private static final String TAG_SM_PASSWORD = "sm_password";
+    private static final String TAG_SM_PHONE = "sm_phone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -440,13 +447,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     int success = json.getInt(TAG_SUCCESS);
                     int sm_id = json.getInt(TAG_SM_ID);
+                    String sm_name = json.getString(TAG_SM_NAME);
+                    String sm_email = json.getString(TAG_SM_EMAIL);
+                    String sm_password = json.getString(TAG_SM_PASSWORD);
+                    String sm_phone = json.getString(TAG_SM_PHONE);
+
 
                     if (success == 1) {
-                        CustOrder co = new CustOrder();
-                        co.setSmId(sm_id);
-                        //successfully created product
+                        Salesman salesman = new Salesman();
+
+                        salesman.setSm_id(sm_id);
+                        salesman.setSm_name(sm_name);
+                        salesman.setSm_email(sm_email);
+                        salesman.setSm_password(sm_password);
+                        salesman.setSm_phone(sm_phone);
+
                         Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
-                        i.putExtra("CustomerOrder", co);
+                        i.putExtra("Salesmen", salesman);
                         i.putExtra("Lang", Lang);
                         startActivity(i);
 
