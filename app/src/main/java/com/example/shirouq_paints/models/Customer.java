@@ -1,20 +1,19 @@
 package com.example.shirouq_paints.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class Customer implements Serializable {
 
-    private String CustName;
+    private String custName;
 
-    private String CustPhone;
+    private String custCode;
 
-    private String CustEmail;
+    private String custPhone;
 
-    private String CustAddress;
+    private String custEmail;
+
+    private String custAddress;
 
     private String lon;
 
@@ -27,19 +26,25 @@ public class Customer implements Serializable {
     //setters
 
     public void setCustName(String custName) {
-        CustName = custName;
+        this.custName = custName;
     }
 
+    public String getCustCode() {
+        return custCode;
+    }
+
+
+
     public void setCustPhone(String custPhone) {
-        CustPhone = custPhone;
+        this.custPhone = custPhone;
     }
 
     public void setCustEmail(String custEmail) {
-        CustEmail = custEmail;
+        this.custEmail = custEmail;
     }
 
     public void setCustAddress(String custAddress) {
-        CustAddress = custAddress;
+        this.custAddress = custAddress;
     }
 
 
@@ -61,20 +66,25 @@ public class Customer implements Serializable {
     }
 
     public String getCustEmail() {
-        return CustEmail;
+        return custEmail;
     }
 
     public String getCustPhone() {
-        return CustPhone;
+        return custPhone;
     }
 
     public String getCustName() {
-        return CustName;
+        return custName;
     }
 
     public String getCustAddress() {
-        return CustAddress;
+        return custAddress;
     }
+
+    public void setCustCode(String custCode) {
+        this.custCode = custCode;
+    }
+
 
 
 }

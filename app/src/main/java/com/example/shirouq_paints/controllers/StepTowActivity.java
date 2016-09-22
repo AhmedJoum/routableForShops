@@ -150,10 +150,10 @@ public class StepTowActivity extends AppCompatActivity {
 
         co = (Customer) getIntent().getSerializableExtra("CustomerOrder");
 
-//        SelectedServices = co.getServices();
-//        SelectedServiceDescription = co.getServicesDescription();
+//        SelectedServices = customer.getServices();
+//        SelectedServiceDescription = customer.getServicesDescription();
 
-        //Toast.makeText(getApplicationContext(), co.getCustEmail() + "  " + co.getSmId() , Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), customer.getCustEmail() + "  " + customer.getSmId() , Toast.LENGTH_LONG).show();
         final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         final LocListener l = new LocListener();
 
@@ -174,8 +174,8 @@ public class StepTowActivity extends AppCompatActivity {
                 } else {
                     getCustServicesAndDescription();
 
-//                    co.setServices(SelectedServices);
-//                    co.setServicesDescription(SelectedServiceDescription);
+//                    customer.setServices(SelectedServices);
+//                    customer.setServicesDescription(SelectedServiceDescription);
 
                     //if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     //  Toast.makeText(getApplicationContext(), GPSError, Toast.LENGTH_LONG).show();
@@ -183,8 +183,8 @@ public class StepTowActivity extends AppCompatActivity {
                     if (!CheckServiceDescription()) {
                         Toast.makeText(getApplicationContext(), DescriptionServiceError, Toast.LENGTH_LONG).show();
                     } else {
-                        //co.setLon("" + l.getLon());
-                        //co.setLat("" + l.getLat());
+                        //customer.setLon("" + l.getLon());
+                        //customer.setLat("" + l.getLat());
 
 
                         if (isNetworkAvailable()) {
@@ -215,9 +215,9 @@ public class StepTowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Customer cust = new Customer();
-//                custOrder.setSmId(co.getSmId());
+//                custOrder.setSmId(customer.getSmId());
 
-                Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
+                Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
                 i.putExtra("CustomerOrder", cust);
                 i.putExtra("Lang", Lang);
                 startActivity(i);
@@ -239,7 +239,7 @@ public class StepTowActivity extends AppCompatActivity {
 //    private void setCustServicesAndDescription() {
 //        if (SelectedServices.size() > 0) {
 //            for (int i = 0; i < SelectedServices.size(); i++) {
-//                switch (co.getServices().get(i)) {
+//                switch (customer.getServices().get(i)) {
 //                    case 1:
 //                        mCB1.setChecked(true);
 //                        mET1.setText(SelectedServiceDescription.get(1).toString());
@@ -491,10 +491,10 @@ public class StepTowActivity extends AppCompatActivity {
 
     private void backBtnClick() {
         if (getCustServicesAndDescription()) {
-//            co.setServices(SelectedServices);
+//            customer.setServices(SelectedServices);
         }
 
-        Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
+        Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
         i.putExtra("CustomerOrder", co);
         i.putExtra("Lang", Lang);
         startActivity(i);
@@ -571,9 +571,9 @@ public class StepTowActivity extends AppCompatActivity {
     }
 
     private boolean CheckServiceDescription() {
-//        for (int i = 0; i < co.getServices().size(); i++)
+//        for (int i = 0; i < customer.getServices().size(); i++)
 //        {
-//            if(co.getServicesDescription().get(co.getServices().get(i)).equals(""))
+//            if(customer.getServicesDescription().get(customer.getServices().get(i)).equals(""))
 //            {
 //                return false;
 //            } else  {
@@ -642,7 +642,7 @@ public class StepTowActivity extends AppCompatActivity {
          * Creating product
          */
         protected String doInBackground(String... args) {
-//            String sm_id = "" + co.getSmId();
+//            String sm_id = "" + customer.getSmId();
             String cust_name = co.getCustName();
             String cust_phone = co.getCustPhone();
             String Cust_email = co.getCustEmail();
@@ -666,10 +666,10 @@ public class StepTowActivity extends AppCompatActivity {
             //adding services and its descriptions
             // try
             // {
-            //     for(int i = 0; i < co.getServices().size(); i++)
+            //     for(int i = 0; i < customer.getServices().size(); i++)
             //     {
-            //         Services.put("service_id", "" + co.getServices().get(i));
-            //         Services.put("service_description", "" + co.getServicesDescription().get(co.getServices().get(i)));
+            //         Services.put("service_id", "" + customer.getServices().get(i));
+            //         Services.put("service_description", "" + customer.getServicesDescription().get(customer.getServices().get(i)));
             //     }
 //
             // }
@@ -697,16 +697,16 @@ public class StepTowActivity extends AppCompatActivity {
 
                     if (success == 1) {
                         //jrba mn '3iir al for
-//                         for (int i = 0; i < co.getServices().size(); i++) {
+//                         for (int i = 0; i < customer.getServices().size(); i++) {
 //                             List<NameValuePair> paramsOS = new ArrayList<NameValuePair>();
 //                             paramsOS.add(new BasicNameValuePair("order_id", "" + order_id));
-//                             paramsOS.add(new BasicNameValuePair("service_id", "" + co.getServices().get(i)));
-//                             paramsOS.add(new BasicNameValuePair("service_description", "" + co.getServicesDescription().get(co.getServices().get(i))));
+//                             paramsOS.add(new BasicNameValuePair("service_id", "" + customer.getServices().get(i)));
+//                             paramsOS.add(new BasicNameValuePair("service_description", "" + customer.getServicesDescription().get(customer.getServices().get(i))));
 //                             JSONObject jsonSO = jsonParser.makeHttpRequest(url_save_order_service, "GET", paramsOS);
 //                         }
                         // successfully created product
                         Customer co = new Customer();
-//                        co.setSmId(((Customer) getIntent().getSerializableExtra("CustomerOrder")).getSmId());
+//                        customer.setSmId(((Customer) getIntent().getSerializableExtra("CustomerOrder")).getSmId());
                         Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
                         i.putExtra("CustomerOrder", co);
                         i.putExtra("Lang", Lang);

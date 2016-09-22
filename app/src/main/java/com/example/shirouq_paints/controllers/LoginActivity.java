@@ -61,18 +61,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
 
 
     // UI references.
@@ -88,22 +81,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private RadioButton selectedLang;
     private String Lang;
 
-    JSONParser jsonParser = new JSONParser();
-    private static String url_sm_login = "http://yiserver.com/rms-ws/sm_login.php";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_SM_ID = "sm_id";
-    private static final String TAG_SM_NAME = "sm_name";
-    private static final String TAG_SM_EMAIL = "sm_email";
-    private static final String TAG_SM_PASSWORD = "sm_password";
-    private static final String TAG_SM_PHONE = "sm_phone";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
 
-        if( getIntent().getBooleanExtra("crashed", false) == true) {
+        if (getIntent().getBooleanExtra("crashed", false) == true) {
             Toast.makeText(getApplicationContext(), "Server Down :(..", Toast.LENGTH_LONG).show();
         }
         // Set up the login form.
@@ -228,14 +212,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            if(isNetworkAvailable()) {
+            if (isNetworkAvailable()) {
                 showProgress(true);
 
                 mEmail = mEmailView.getText().toString();
                 mPassword = mPasswordView.getText().toString();
 
 
-                new sm_Login().execute();
+                new SalesmanService().execute();
 
                 mAuthTask = new UserLoginTask(email, password);
                 mAuthTask.execute((Void) null);
@@ -246,16 +230,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email, String password) {
-        //TODO: Replace this with your own logic
-        if(email.contains("@")  && email.contains(".")) {
-                return  true;
+        if (email.contains("@") && email.contains(".")) {
+            return true;
         } else {
             return false;//email.contains("@");
         }
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 
@@ -365,24 +347,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
             return true;
         }
 
@@ -406,79 +370,106 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    class sm_Login extends AsyncTask<String, String, String> {
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+    /**
+     * Web services parameters includes:
+     * jsonParser: the object which will push and pull requests in json format.
+     * url_sm_login: the url for the salesman login webService.
+     * TAG_SUCCESS: get the success tag from the received json, which generated
+     *              by the web service.
+     * TAG_SM_ID: get the sm_id tag from the received json,
+     * TAG_SM_NAME: get the sm_name tag from the received json,
+     * TAG_SM_EMAIL: get the sm_email tag from the received json,
+     * TAG_SM_PHONE: get the sm_phone tag from the received json,
+     */
+
+    JSONParser jsonParser = new JSONParser();
+    private static String url_sm_login = "http://yiserver.com/shirouq_sales_ws/sm_login.php";
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_SM_ID = "sm_id";
+    private static final String TAG_SM_NAME = "sm_name";
+    private static final String TAG_SM_EMAIL = "sm_email";
+    private static final String TAG_SM_PHONE = "sm_phone";
+
+    /**
+     * SalesmanService class.
+     *
+     * contact with the web service to save the current customer and return it's
+     * code the order activity.
+     *
+     * it works on the background thread.
+     *
+     */
+
+
+    class SalesmanService extends AsyncTask<String, String, String> {
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
         }
 
-        /**
-         * Creating product
-         * */
+
+
         protected String doInBackground(String... args) {
             String email = mEmail;
             String password = mPassword;
-            //String description = inputDesc.getText().toString();
 
-            // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("email", email));
             params.add(new BasicNameValuePair("password", password));
-            //params.add(new BasicNameValuePair("description", description));
-            try {
-            // getting JSON Object
-            // Note that create product url accepts POST method
-            JSONObject json = jsonParser.makeHttpRequest(url_sm_login, "GET", params);
 
-                if(json == null){
+             try {
+
+                 JSONObject json = jsonParser.makeHttpRequest(url_sm_login, "GET", params);
+
+                if (json == null) {
                     Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                     i.putExtra("crashed", true);
                     startActivity(i);
                 } else {
-                    // check log cat fro response
+
                     Log.d("Create Response", json.toString());
 
-                    // check for success tag
 
                     int success = json.getInt(TAG_SUCCESS);
                     int sm_id = json.getInt(TAG_SM_ID);
                     String sm_name = json.getString(TAG_SM_NAME);
                     String sm_email = json.getString(TAG_SM_EMAIL);
-                    String sm_password = json.getString(TAG_SM_PASSWORD);
                     String sm_phone = json.getString(TAG_SM_PHONE);
 
 
                     if (success == 1) {
                         Salesman salesman = new Salesman();
+                        Customer customer = new Customer();
 
                         salesman.setSm_id(sm_id);
                         salesman.setSm_name(sm_name);
                         salesman.setSm_email(sm_email);
-                        salesman.setSm_password(sm_password);
                         salesman.setSm_phone(sm_phone);
 
-                        Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
+                        Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
                         i.putExtra("Salesmen", salesman);
-                        i.putExtra("Lang", Lang);
+                        i.putExtra("Customer", customer);
+                        i.putExtra("Lang", "Arabic");
                         startActivity(i);
 
-                        // closing this screen
                         finish();
                     } else {
-                        // failed to create product
                         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                         i.putExtra("crashed", false);
                         startActivity(i);
                     }
                 }
             } catch (JSONException e) {
-               //e.printStackTrace();
-                //Toast.makeText(getApplicationContext(), "Network Connection problem..", Toast.LENGTH_LONG).show();
+
+                Log.w("JSON Exception", e.getMessage());
 
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 i.putExtra("crashed", true);
@@ -488,24 +479,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
+
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog once done
-            //pDialog.dismiss();
         }
 
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+
 
     @Override
     public void onBackPressed() {
     }
+
+
 }
 

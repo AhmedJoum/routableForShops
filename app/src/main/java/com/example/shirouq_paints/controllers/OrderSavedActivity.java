@@ -36,7 +36,7 @@ public class OrderSavedActivity extends AppCompatActivity {
         newOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), StepOneActivity.class);
+                Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
                 i.putExtra("CustomerOrder", co);
                 i.putExtra("Lang", Lang);
                 startActivity(i);
