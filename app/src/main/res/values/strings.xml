@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shirouq Paints</string>
+    <string name="app_name">Roatable</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -15,4 +15,39 @@
     </string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_step_tow">StepTowActivity</string>
+    <string name="salepoint_code">كود النقطه </string>
+    <string name="salepoint_name">اسم النقطه</string>
+    <string name="salepoint_sup">اسم المسئول</string>
+    <string name="salepoint_type">نوع النقطه </string>
+    <string name="salepoint_phone">الهاتف </string>
+    <string name="salepoint_address">العنوان </string>
+
+    <string name="zain">زين</string>
+    <string name="mtn">ام تي ان</string>
+    <string name="sudani">سوداني</string>
+
+    <string name="stickers">اعلانات لاصقه</string>
+    <string name="danglers"> اعلانات معلقه</string>
+    <string name="wash_lines"> حبل غسيل </string>
+
+    <string-array name="products">
+        <item>بقالة</item>
+        <item>مكتبه </item>
+        <item>اتصالات</item>
+        <item>اخرى</item>
+    </string-array>
+    
+    <string-array name="status">
+        <item>ممتاز</item>
+        <item>جيد</item>
+        <item>سيئ</item>
+    </string-array>
+
+    <string-array name="badAds">
+        <item>مكسورة</item>
+        <item>ممزقة</item>
+        <item>ممزقة</item>
+        <item>اخرى..</item>
+    </string-array>
+    
 </resources>

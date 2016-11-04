@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.Customer;
 
 
@@ -22,23 +23,25 @@ public class OrderSavedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Lang = getIntent().getStringExtra("Lang");
+        final Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
+        final Customer customer = new Customer();
 
         if(Lang.equals("English"))
-            setContentView(R.layout.activity_order_saved);
+            setContentView(R.layout.activity_order_saved_note);
         else
-            setContentView(R.layout.activity_order_saved_ar);
+            setContentView(R.layout.activity_order_saved_note_ar);
 
         newOrder = (Button) findViewById(R.id.newOrder);
         logoutBtn = (FloatingActionButton) findViewById(R.id.LogoutBtn);
 
-        final Customer co = (Customer) getIntent().getSerializableExtra("CustomerOrder");
 
         newOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
-                i.putExtra("CustomerOrder", co);
-                i.putExtra("Lang", Lang);
+                i.putExtra("Customer", customer);
+                i.putExtra("Lang", "Arabic");
+                i.putExtra("Agent", agent);
                 startActivity(i);
             }
         });

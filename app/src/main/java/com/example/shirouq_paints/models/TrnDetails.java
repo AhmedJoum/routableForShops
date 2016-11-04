@@ -9,7 +9,7 @@ public class TrnDetails  implements Serializable {
 
     private TrnHeader trnHeader;
 
-    private Salesman salesman;
+    private Agent agent;
 
     private String itemDes;
 
@@ -25,12 +25,12 @@ public class TrnDetails  implements Serializable {
         this.trnHeader = trnHeader;
     }
 
-    public Salesman getSalesman() {
-        return salesman;
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setSalesman(Salesman salesman) {
-        this.salesman = salesman;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 
     public String getItemDes() {

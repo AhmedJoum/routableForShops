@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.Customer;
-import com.example.shirouq_paints.models.Salesman;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -29,7 +28,6 @@ import java.util.List;
 
 import com.example.shirouq_paints.util.JSONParser;
 import com.example.shirouq_paints.util.LocListener;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -56,6 +54,10 @@ public class CustomerInfoActivity extends AppCompatActivity {
     FloatingActionButton cancelBtn;
     FloatingActionButton logoutBtn;
 
+    private View mProgressView;
+    private View mLoginFormView;
+
+
 
     Customer customer = new Customer();
     private String Lang;
@@ -74,7 +76,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         boolean crashed = getIntent().getBooleanExtra("crashed", false);
 
         if (crashed == true) {
-            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getIntent().getStringExtra("message"), Toast.LENGTH_LONG).show();
         }
 
         final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -108,7 +110,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
             GPSError = "GPS Not Activated.";
 
         } else {
-            setContentView(R.layout.activity_customer_info_ar);
+            setContentView(R.layout.activity_sale_point_info_ar);
             nameError1 = "لا يمكن للاسم ان يحتوي ارقاماً!";
             nameError2 = "ادخل اسم العميل";
             phoneError1 = "رقام فقط";
@@ -135,6 +137,9 @@ public class CustomerInfoActivity extends AppCompatActivity {
         custCode.setText(customer.getCustCode());
         custAddress.setText(customer.getCustAddress());
 
+        mProgressView = findViewById(R.id.cust_progress);;
+
+        enable();
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,6 +201,8 @@ public class CustomerInfoActivity extends AppCompatActivity {
                     focusView.requestFocus();
                 } else {
 
+
+
                     customer.setCustName(name);
                     customer.setCustPhone(Phone);
                     customer.setCustCode(Code);
@@ -204,10 +211,14 @@ public class CustomerInfoActivity extends AppCompatActivity {
                     customer.setLat("" + l.getLat());
                     customer.setLon("" + l.getLon());
 
-                    Intent i = new Intent(getApplicationContext(), StepTowActivity.class);
-                    i.putExtra("CustomerOrder", customer);
-                    i.putExtra("Lang", Lang);
-                    startActivity(i);
+//                    Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
+//                    i.putExtra("CustomerOrder", customer);
+//                    i.putExtra("Lang", Lang);
+//                    startActivity(i);
+
+                    disable();
+
+                    new CustomerService().execute();
                 }
             }
         });
@@ -233,10 +244,38 @@ public class CustomerInfoActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
     }
 
-    @Override
+
+        @Override
     public void onBackPressed() {
+    }
+
+
+    public void disable()
+    {
+        custAddress.setEnabled(false);
+        custCode.setEnabled(false);
+        custName.setEnabled(false);
+        custPhone.setEnabled(false);
+
+        nextBtn.setEnabled(false);
+        logoutBtn.setEnabled(false);
+        cancelBtn.setEnabled(false);
+    }
+
+    public void enable()
+    {
+        custAddress.setEnabled(true);
+        custCode.setEnabled(true);
+        custName.setEnabled(true);
+        custPhone.setEnabled(true);
+
+        nextBtn.setEnabled(true);
+        logoutBtn.setEnabled(true);
+        cancelBtn.setEnabled(true);
     }
 
 
@@ -297,11 +336,11 @@ public class CustomerInfoActivity extends AppCompatActivity {
 
 
                     if (success == 1) {
-                        Salesman salesman = new Salesman();
-                        Customer customer = new Customer();
+                        Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
+                        //Customer customer = new Customer();
 
-                        Intent i = new Intent(getApplicationContext(), StepTowActivity.class);
-                        i.putExtra("Salesmen", salesman);
+                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
+                        i.putExtra("Agent", agent);
                         i.putExtra("Customer", customer);
                         i.putExtra("Lang", "Arabic");
                         startActivity(i);
@@ -310,9 +349,14 @@ public class CustomerInfoActivity extends AppCompatActivity {
                         finish();
                     } else {
                         // failed to create product
+                        Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
+
                         Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
                         i.putExtra("crashed", true);
                         i.putExtra("message", message);
+                        i.putExtra("Lang", "Arabic");
+                        i.putExtra("Agent", agent);
+                        i.putExtra("Customer", customer);
                         startActivity(i);
                     }
                 }

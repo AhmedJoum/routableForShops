@@ -42,8 +42,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.Customer;
-import com.example.shirouq_paints.models.Salesman;
 import com.example.shirouq_paints.util.JSONParser;
 
 import java.util.ArrayList;
@@ -379,22 +379,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Web services parameters includes:
      * jsonParser: the object which will push and pull requests in json format.
-     * url_sm_login: the url for the salesman login webService.
+     * url_sm_login: the url for the agent login webService.
      * TAG_SUCCESS: get the success tag from the received json, which generated
      *              by the web service.
-     * TAG_SM_ID: get the sm_id tag from the received json,
-     * TAG_SM_NAME: get the sm_name tag from the received json,
-     * TAG_SM_EMAIL: get the sm_email tag from the received json,
-     * TAG_SM_PHONE: get the sm_phone tag from the received json,
+     * TAG_A_ID: get the sm_id tag from the received json,
+     * TAG_A_NAME: get the sm_name tag from the received json,
+     * TAG_A_EMAIL: get the sm_email tag from the received json,
+     * TAG_R_ID: get the sm_phone tag from the received json,
      */
 
     JSONParser jsonParser = new JSONParser();
-    private static String url_sm_login = "http://yiserver.com/shirouq_sales_ws/sm_login.php";
+    private static String url_sm_login = "http://consulsat-sd.com/roatable/a_login.php";
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_SM_ID = "sm_id";
-    private static final String TAG_SM_NAME = "sm_name";
-    private static final String TAG_SM_EMAIL = "sm_email";
-    private static final String TAG_SM_PHONE = "sm_phone";
+    private static final String TAG_A_ID = "a_id";
+    private static final String TAG_A_NAME = "a_name";
+    private static final String TAG_A_EMAIL = "a_email";
+    private static final String TAG_R_ID = "r_id";
 
     /**
      * SalesmanService class.
@@ -439,23 +439,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
                     int success = json.getInt(TAG_SUCCESS);
-                    int sm_id = json.getInt(TAG_SM_ID);
-                    String sm_name = json.getString(TAG_SM_NAME);
-                    String sm_email = json.getString(TAG_SM_EMAIL);
-                    String sm_phone = json.getString(TAG_SM_PHONE);
+                    int a_id = json.getInt(TAG_A_ID);
+                    String a_name = json.getString(TAG_A_NAME);
+                    String a_email = json.getString(TAG_A_EMAIL);
+                    String r_id = json.getString(TAG_R_ID);
 
 
                     if (success == 1) {
-                        Salesman salesman = new Salesman();
+                        Agent agent = new Agent();
                         Customer customer = new Customer();
 
-                        salesman.setSm_id(sm_id);
-                        salesman.setSm_name(sm_name);
-                        salesman.setSm_email(sm_email);
-                        salesman.setSm_phone(sm_phone);
+                        agent.setA_id(a_id);
+                        agent.setA_name(a_name);
+                        agent.setA_email(a_email);
+                        agent.setR_id(r_id);
 
-                        Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
-                        i.putExtra("Salesmen", salesman);
+                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
+                        i.putExtra("Agent", agent);
                         i.putExtra("Customer", customer);
                         i.putExtra("Lang", "Arabic");
                         startActivity(i);

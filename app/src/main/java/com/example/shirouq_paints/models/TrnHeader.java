@@ -9,7 +9,7 @@ import  java.util.Date;
 public class TrnHeader implements Serializable {
     private int trn_id;
 
-    private Salesman salesman;
+    private Agent agent;
 
     private Customer customer;
 
@@ -29,12 +29,12 @@ public class TrnHeader implements Serializable {
         this.customer = customer;
     }
 
-    public Salesman getSalesman() {
-        return salesman;
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setSalesman(Salesman salesman) {
-        this.salesman = salesman;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 
     public int getTrn_id() {
