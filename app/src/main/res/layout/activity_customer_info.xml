@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/custName"
+        android:id="@+id/spName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -25,13 +25,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/custPhone"
-        android:layout_below="@+id/custName"
+        android:id="@+id/spPhone"
+        android:layout_below="@+id/spName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
-        android:layout_alignRight="@+id/custName"
-        android:layout_alignEnd="@+id/custName"
+        android:layout_alignRight="@+id/spName"
+        android:layout_alignEnd="@+id/spName"
         android:inputType="number"
         android:hint="Customer Phone"/>
 
@@ -40,13 +40,13 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/custEmail"
-        android:layout_below="@+id/custPhone"
+        android:id="@+id/spOwnerName"
+        android:layout_below="@+id/spPhone"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
-        android:layout_alignRight="@+id/custPhone"
-        android:layout_alignEnd="@+id/custPhone"
+        android:layout_alignRight="@+id/spPhone"
+        android:layout_alignEnd="@+id/spPhone"
         android:hint="Customer Email"/>
 
     <EditText
@@ -54,12 +54,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/custAdress"
-        android:layout_below="@+id/custEmail"
+        android:layout_below="@+id/spOwnerName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
-        android:layout_alignRight="@+id/custPhone"
-        android:layout_alignEnd="@+id/custEmail"
+        android:layout_alignRight="@+id/spPhone"
+        android:layout_alignEnd="@+id/spOwnerName"
         android:hint="Customer Adress"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -69,8 +69,8 @@
         android:layout_gravity="bottom|end"
         android:src="@android:drawable/ic_media_next"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/custEmail"
-        android:layout_alignEnd="@+id/custEmail" />
+        android:layout_alignRight="@+id/spOwnerName"
+        android:layout_alignEnd="@+id/spOwnerName" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/cancelBtn"

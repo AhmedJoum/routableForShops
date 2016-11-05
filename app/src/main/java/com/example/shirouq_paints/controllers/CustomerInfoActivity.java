@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shirouq_paints.models.Agent;
-import com.example.shirouq_paints.models.Customer;
+import com.example.shirouq_paints.models.SalePoint;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,7 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class CustomerInfoActivity extends AppCompatActivity {
 
-    //// TODO: 9/15/16 : use popup menu to save customer and clear controls
+    //// TODO: 9/15/16 : use popup menu to save salePoint and clear controls
 
     EditText custName;
     EditText custCode;
@@ -59,7 +59,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
 
 
 
-    Customer customer = new Customer();
+    SalePoint salePoint = new SalePoint();
     private String Lang;
 
 
@@ -120,127 +120,22 @@ public class CustomerInfoActivity extends AppCompatActivity {
             GPSError = "تحديد المواقع لا يعمل...";
         }
 
-        custName = (EditText) findViewById(R.id.custName);
-        custPhone = (EditText) findViewById(R.id.custPhone);
-        custCode = (EditText) findViewById(R.id.custCode);
-        custAddress = (EditText) findViewById(R.id.custAdress);
 
-        nextBtn = (FloatingActionButton) findViewById(R.id.nextBtn);
-        cancelBtn = (FloatingActionButton) findViewById(R.id.cancelBtn);
-        logoutBtn = (FloatingActionButton) findViewById(R.id.LogoutBtn);
+        //final SalePoint
 
-        //final Customer
-        customer = (Customer) getIntent().getSerializableExtra("Customer");
-
-        custName.setText(customer.getCustName());
-        custPhone.setText(customer.getCustPhone());
-        custCode.setText(customer.getCustCode());
-        custAddress.setText(customer.getCustAddress());
 
         mProgressView = findViewById(R.id.cust_progress);;
 
-        enable();
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = custName.getText().toString();
-                String Phone = custPhone.getText().toString();
-                String Code = custCode.getText().toString();
-                String Address = custAddress.getText().toString();
 
 
 
-                boolean cancel = false;
-                View focusView = null;
-
-                if (name.matches(".*\\d.*")) {
-
-                    custName.setError(nameError1);
-                    cancel = true;
-                    focusView = custName;
-                }
-
-                if (name.equals("")) {
-                    custName.setError(nameError2);
-                    cancel = true;
-                    focusView = custName;
-                }
-
-                if (!Phone.matches("[0-9]+")) {
-                    custPhone.setError(phoneError1);
-                    cancel = true;
-                    focusView = custPhone;
-                }
-
-                if (Phone.length() > 10 || Phone.length() < 10) {
-                    custPhone.setError(phoneError2);
-                    cancel = true;
-                    focusView = custPhone;
-                }
-
-//                if (!Email.matches(".+@.+\\.[a-z]+")) {
-//                    custEmail.setError(emailError);
-//                    cancel = true;
-//                    focusView = custEmail;
-//                }
-
-                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                  Toast.makeText(getApplicationContext(), GPSError, Toast.LENGTH_LONG).show();
-                    cancel = true;
-                }
-
-                if (name.equals("") || Phone.equals("") || Code.equals("")) {
-                    Toast.makeText(getApplicationContext(),
-                            TBsError,
-                            Toast.LENGTH_LONG).show();
-                    cancel = true;
-                }
-
-                if (cancel) {
-                    focusView.requestFocus();
-                } else {
 
 
 
-                    customer.setCustName(name);
-                    customer.setCustPhone(Phone);
-                    customer.setCustCode(Code);
-                    customer.setCustAddress(Address);
-
-                    customer.setLat("" + l.getLat());
-                    customer.setLon("" + l.getLon());
-
-//                    Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-//                    i.putExtra("CustomerOrder", customer);
-//                    i.putExtra("Lang", Lang);
-//                    startActivity(i);
-
-                    disable();
-
-                    new CustomerService().execute();
-                }
-            }
-        });
 
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                custName.setText("");
-                custCode.setText("");
-                custAddress.setText("");
-                custPhone.setText("");
-            }
-        });
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(i);
-            }
-        });
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -289,7 +184,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
     /**
      * CustomerService class.
      * <p/>
-     * contact with the web service to save the current customer and return it's
+     * contact with the web service to save the current salePoint and return it's
      * code the order activity.
      * <p/>
      * it works on the background thread.
@@ -308,12 +203,12 @@ public class CustomerInfoActivity extends AppCompatActivity {
 
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", customer.getCustName()));
-            params.add(new BasicNameValuePair("code", customer.getCustCode()));
-            params.add(new BasicNameValuePair("address", customer.getCustAddress()));
-            params.add(new BasicNameValuePair("phone", customer.getCustPhone()));
-            params.add(new BasicNameValuePair("lat", customer.getLat()));
-            params.add(new BasicNameValuePair("lon", customer.getLon()));
+            params.add(new BasicNameValuePair("name", salePoint.getSpName()));
+            params.add(new BasicNameValuePair("code", salePoint.getSpCode()));
+            params.add(new BasicNameValuePair("address", salePoint.getSpAddress()));
+            params.add(new BasicNameValuePair("phone", salePoint.getSpPhone()));
+            params.add(new BasicNameValuePair("lat", salePoint.getLat()));
+            params.add(new BasicNameValuePair("lon", salePoint.getLon()));
 
             try {
                 // getting JSON Object
@@ -337,11 +232,11 @@ public class CustomerInfoActivity extends AppCompatActivity {
 
                     if (success == 1) {
                         Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
-                        //Customer customer = new Customer();
+                        //SalePoint salePoint = new SalePoint();
 
                         Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
                         i.putExtra("Agent", agent);
-                        i.putExtra("Customer", customer);
+                        i.putExtra("SalePoint", salePoint);
                         i.putExtra("Lang", "Arabic");
                         startActivity(i);
 
@@ -356,7 +251,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
                         i.putExtra("message", message);
                         i.putExtra("Lang", "Arabic");
                         i.putExtra("Agent", agent);
-                        i.putExtra("Customer", customer);
+                        i.putExtra("SalePoint", salePoint);
                         startActivity(i);
                     }
                 }

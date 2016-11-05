@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.shirouq_paints.models.Agent;
-import com.example.shirouq_paints.models.Customer;
+import com.example.shirouq_paints.models.SalePoint;
 
 
 public class OrderSavedActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class OrderSavedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Lang = getIntent().getStringExtra("Lang");
         final Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
-        final Customer customer = new Customer();
+        final SalePoint salePoint = new SalePoint();
 
         if(Lang.equals("English"))
             setContentView(R.layout.activity_order_saved_note);
@@ -39,7 +39,7 @@ public class OrderSavedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CustomerInfoActivity.class);
-                i.putExtra("Customer", customer);
+                i.putExtra("SalePoint", salePoint);
                 i.putExtra("Lang", "Arabic");
                 i.putExtra("Agent", agent);
                 startActivity(i);

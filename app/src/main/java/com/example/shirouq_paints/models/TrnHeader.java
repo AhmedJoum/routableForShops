@@ -11,7 +11,7 @@ public class TrnHeader implements Serializable {
 
     private Agent agent;
 
-    private Customer customer;
+    private SalePoint salePoint;
 
     public Date getTrn_date() {
         return trn_date;
@@ -21,12 +21,12 @@ public class TrnHeader implements Serializable {
         this.trn_date = trn_date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public SalePoint getSalePoint() {
+        return salePoint;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setSalePoint(SalePoint salePoint) {
+        this.salePoint = salePoint;
     }
 
     public Agent getAgent() {

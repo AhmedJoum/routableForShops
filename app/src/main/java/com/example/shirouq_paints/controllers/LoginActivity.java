@@ -43,7 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shirouq_paints.models.Agent;
-import com.example.shirouq_paints.models.Customer;
+import com.example.shirouq_paints.models.SalePoint;
 import com.example.shirouq_paints.util.JSONParser;
 
 import java.util.ArrayList;
@@ -399,7 +399,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * SalesmanService class.
      *
-     * contact with the web service to save the current customer and return it's
+     * contact with the web service to save the current salePoint and return it's
      * code the order activity.
      *
      * it works on the background thread.
@@ -447,7 +447,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     if (success == 1) {
                         Agent agent = new Agent();
-                        Customer customer = new Customer();
+                        SalePoint salePoint = new SalePoint();
 
                         agent.setA_id(a_id);
                         agent.setA_name(a_name);
@@ -456,7 +456,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
                         i.putExtra("Agent", agent);
-                        i.putExtra("Customer", customer);
+                        i.putExtra("SalePoint", salePoint);
                         i.putExtra("Lang", "Arabic");
                         startActivity(i);
 
