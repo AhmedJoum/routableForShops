@@ -43,11 +43,10 @@
         <string name="bad">سيئ</string>
 
 
-    <string-array name="badAds">
-        <item>مكسورة</item>
-        <item>ممزقة</item>
-        <item>ممزقة</item>
-        <item>اخرى..</item>
-    </string-array>
+
+        <string name="brock">مكسورة</string>
+        <string name="cut">ممزقة</string>
+        <string name="else_">اخرى..</string>
+
     
 </resources>

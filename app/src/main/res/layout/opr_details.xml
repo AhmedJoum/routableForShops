@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/zainInfo"
+        android:id="@+id/InfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/searchLayout"
         android:layout_weight="3"
-        android:background="#D8BFD8"
         android:orientation="vertical"
         android:layoutDirection="rtl"
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/zainInfoDetails1"
+            android:id="@+id/OprInfoDetails1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/searchLayout"
@@ -25,8 +24,11 @@
             android:layoutDirection="rtl"
             android:orientation="horizontal">
 
+
+
+
             <CheckBox
-                android:id="@+id/zainStickCB"
+                android:id="@+id/StickCB"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -40,77 +42,14 @@
                 android:textDirection="rtl"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/zainStickNo"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:hint="العدد"
-                android:inputType="number" />
 
-
-            <RadioGroup
-                android:id="@+id/zainStickStatusGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <RadioButton
-                    android:id="@+id/status1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/excellent" />
-
-                <RadioButton
-                    android:id="@+id/status2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/good" />
-
-                <RadioButton
-                    android:id="@+id/status3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/bad" />
-
-
-            </RadioGroup>
+            <include layout="@layout/ad_type" android:id="@+id/adType1"/>
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/zainInfoDetails1_0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:gravity="left"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <Spinner
-                android:id="@+id/zainStickBadReason"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:entries="@array/badAds"
-                android:layoutDirection="rtl"
-                android:textDirection="rtl" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/zainInfoDetails2"
+            android:id="@+id/OprInfoDetails2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/searchLayout"
@@ -120,7 +59,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/zainDangCB"
+                android:id="@+id/DangCB"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -135,38 +74,12 @@
                 android:textSize="20dp" />
 
 
-            <include layout="@layout/ad_type" android:id="adType"/>
+            <include layout="@layout/ad_type" android:id="@+id/adType2"/>
 
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/zainInfoDetails2_1s"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:gravity="left"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-
-            <Spinner
-                android:id="@+id/zainDangBadReason"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:entries="@array/badAds"
-                android:layoutDirection="rtl"
-                android:textDirection="rtl" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/zainInfoDetails3"
@@ -193,55 +106,10 @@
                 android:textDirection="rtl"
                 android:textSize="20dp" />
 
-            <include layout="@layout/ad_type" android:id="adType"/>
+            <include layout="@layout/ad_type" android:id="@+id/adType3" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/zainInfoDetails2_0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:gravity="left"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <RadioGroup
-                android:id="@+id/zainWashBadResoan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:orientation="horizontal"
-                android:layoutDirection="rtl"
-                android:weightSum="4">
-
-                <RadioButton
-                    android:id="@+id/zainWashBadResoan1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/excellent" />
-
-                <RadioButton
-                    android:id="@+id/zainWashBadResoan2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/good" />
-
-                <RadioButton
-                    android:id="@+id/zainWashBadResoan3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/bad" />
-            </RadioGroup>
-        </LinearLayout>
 
     </LinearLayout>
 
