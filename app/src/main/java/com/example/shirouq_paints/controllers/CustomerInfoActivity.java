@@ -208,7 +208,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("address", salePoint.getSpAddress()));
             params.add(new BasicNameValuePair("phone", salePoint.getSpPhone()));
             params.add(new BasicNameValuePair("lat", salePoint.getLat()));
-            params.add(new BasicNameValuePair("lon", salePoint.getLon()));
+            params.add(new BasicNameValuePair("lon", salePoint.getLng()));
 
             try {
                 // getting JSON Object

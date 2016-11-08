@@ -37,11 +37,11 @@
         <item>اخرى</item>
     </string-array>
     
-    <string-array name="status">
-        <item>ممتاز</item>
-        <item>جيد</item>
-        <item>سيئ</item>
-    </string-array>
+
+        <string name="excellent">ممتاز</string>
+        <string name="good">جيد</string>
+        <string name="bad">سيئ</string>
+
 
     <string-array name="badAds">
         <item>مكسورة</item>
