@@ -92,7 +92,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/zainWashCB"
+                android:id="@+id/WashCB"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
