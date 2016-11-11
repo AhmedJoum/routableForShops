@@ -458,6 +458,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         i.putExtra("Agent", agent);
                         i.putExtra("SalePoint", salePoint);
                         i.putExtra("Lang", "Arabic");
+                        i.putExtra("up", "");
                         startActivity(i);
 
                         finish();
