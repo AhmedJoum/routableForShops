@@ -33,6 +33,10 @@ public class SalePoint implements Serializable {
 
     private int street_type;
 
+
+
+    private String route_desc;
+
     public SalePoint() {
 
     }
@@ -139,6 +143,14 @@ public class SalePoint implements Serializable {
 
     public void setStreet_type(int street_type) {
         this.street_type = street_type;
+    }
+
+    public String getRoute_desc() {
+        return route_desc;
+    }
+
+    public void setRoute_desc(String route_desc) {
+        this.route_desc = route_desc;
     }
 
 

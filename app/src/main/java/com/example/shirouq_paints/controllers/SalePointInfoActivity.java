@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -27,9 +28,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shirouq_paints.dao.DAO;
+import com.example.shirouq_paints.dao.VisitDAO;
+import com.example.shirouq_paints.dao.VisitResultDAO;
 import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.Route;
 import com.example.shirouq_paints.models.SalePoint;
+import com.example.shirouq_paints.models.Visit;
+import com.example.shirouq_paints.models.VisitResult;
 import com.example.shirouq_paints.util.JSONParser;
 import com.example.shirouq_paints.util.LocListener;
 
@@ -38,8 +44,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 
 public class SalePointInfoActivity extends AppCompatActivity {
@@ -161,7 +168,6 @@ public class SalePointInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Lang = getIntent().getStringExtra("Lang");
 
 
         setContentView(R.layout.activity_sale_point_info_ar);
@@ -179,11 +185,31 @@ public class SalePointInfoActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "enter a code ..", Toast.LENGTH_LONG).show();
                     return;
                 }
-                spCodeTB.setEnabled(false);
-                searchBtn.setEnabled(false);
 
                 sp_code = spCodeTB.getText().toString();
-                new SalePointService().execute();
+                //new SalePointService().execute();
+
+                DAO DAO = new DAO(getApplicationContext());
+                Cursor cr = DAO.getSalePoint_(sp_code);
+
+                if (!(cr.moveToFirst()) || cr.getCount() ==0){
+                    salePoint.setSpCode(sp_code);
+                    return;
+                }
+
+                salePoint.setSpCode(cr.getString(0));
+                salePoint.setSpAddress(cr.getString(1));
+                salePoint.setSpName(cr.getString(2));
+                salePoint.setSpOwnerName(cr.getString(3));
+                salePoint.setSpPhone(cr.getString(4));
+                salePoint.setSpType(Integer.parseInt(cr.getString(5)));
+                salePoint.setStreet_type(Integer.parseInt(cr.getString(6)));
+                salePoint.setBlock_type(Integer.parseInt(cr.getString(7)));
+                route.setRoute_description(cr.getString(8));
+                salePoint.setLat(cr.getString(9));
+                salePoint.setLng(cr.getString(10));
+
+                setSalePointInfo();
             }
         });
 
@@ -263,10 +289,12 @@ public class SalePointInfoActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (salePoint.getLat().isEmpty() || salePoint.getLng().isEmpty()) {
+                if (salePoint.getLat() == null || salePoint.getLng() == null) {
                     Toast.makeText(getApplicationContext(), "Please Set A Location .. !", Toast.LENGTH_LONG).show();
                     return;
                 }
+
+                System.out.println(new SimpleDateFormat("yyyyMMddHHmm").format(new Date()));
 
                 salePoint.setSpName(sp_name);
                 salePoint.setSpOwnerName(sp_owner);
@@ -276,11 +304,34 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 salePoint.setBlock_type(spBlock_type);
                 salePoint.setStreet_type(spStreet_type);
 
-                stepTwo_form.setEnabled(false);
+
+                Visit visit = new Visit();
+                visit.setAgent(agent);
+                visit.setSalePoint(salePoint);
+                visit.setVisit_date(new SimpleDateFormat("yyyyMMddHHmm").format(new Date()));
+                visit.setVisit_id();
+
+                List<VisitResult> visitResults = getAllSellected(visit.getVisit_id());
 
                 System.out.println(salePoint.getLng());
 
-                new UpdateSalePointService().execute();
+
+                DAO dao = new DAO(getApplicationContext());
+
+
+                dao.insertSalePoint(salePoint);
+                dao.insertVisit(visit);
+
+                for(final VisitResult visitResult : visitResults) {
+                    dao.insertVisitResult(visitResult);
+                }
+
+
+                Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
+                i.putExtra("Agent", agent);
+                startActivity(i);
+
+                //new UpdateSalePointService().execute();
 
             }
         });
@@ -321,7 +372,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 System.out.println(salePoint.getLng());
 
                 Toast.makeText(getApplicationContext(), "تم تسجيل النقطه..", Toast.LENGTH_LONG).show();
-                setSalePointInfo();
+                //setSalePointInfo();
 
 
             }
@@ -651,8 +702,8 @@ public class SalePointInfoActivity extends AppCompatActivity {
         spAddressTB = (EditText) findViewById(R.id.spAddressTB);
         spRoatTB = (EditText) findViewById(R.id.spRoatTB);
 
-        spBlockTypeRG= (RadioGroup) findViewById(R.id.spBlockTypeRG);
-        spStreetTypeRG= (RadioGroup) findViewById(R.id.spStreetypeRG);
+        spBlockTypeRG = (RadioGroup) findViewById(R.id.spBlockTypeRG);
+        spStreetTypeRG = (RadioGroup) findViewById(R.id.spStreetypeRG);
 
         blockType1 = (RadioButton) findViewById(R.id.blockType1);
         blockType2 = (RadioButton) findViewById(R.id.blockType2);
@@ -954,94 +1005,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
 
     }
 
-    class UpdateSalePointService extends AsyncTask<String, String, String> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-
-        protected String doInBackground(String... args) {
-
-            String sp_r_id = agent.getR_id();
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("sp_code", salePoint.getSpCode()));
-            params.add(new BasicNameValuePair("sp_name", salePoint.getSpName()));
-            params.add(new BasicNameValuePair("sp_type", "" + salePoint.getSpType()));
-            params.add(new BasicNameValuePair("sp_address", salePoint.getSpAddress()));
-            params.add(new BasicNameValuePair("sp_phone", salePoint.getSpPhone()));
-            params.add(new BasicNameValuePair("sp_owner", salePoint.getSpOwnerName()));
-            params.add(new BasicNameValuePair("lat", salePoint.getLat()));
-            params.add(new BasicNameValuePair("lng", salePoint.getLng()));
-            params.add(new BasicNameValuePair("block_type", "" + salePoint.getBlock_type()));
-            params.add(new BasicNameValuePair("street_type", "" + salePoint.getStreet_type()));
-
-            try {
-
-                JSONObject json = jsonParser.makeHttpRequest(url_sp_update, "GET", params);
-
-                if (json == null) {
-                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                    i.putExtra("crashed", true);
-                    startActivity(i);
-                } else {
-
-                    Log.d("Create Response", json.toString());
-
-
-                    int success = json.getInt(TAG_SUCCESS);
-
-                    String message = json.getString(TAG_MESSAGE);
-
-
-                    if (success == 1) {
-
-
-                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                        i.putExtra("Agent", agent);
-                        i.putExtra("SalePoint", salePoint);
-                        i.putExtra("Route", route);
-                        i.putExtra("Lang", "Arabic");
-                        i.putExtra("up", "up");
-                        i.putExtra("message", message);
-                        startActivity(i);
-
-                        finish();
-                    } else if (success == 2) {
-                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                        i.putExtra("crashed", false);
-                        i.putExtra("Agent", agent);
-                        i.putExtra("SalePoint", salePoint);
-                        i.putExtra("Lang", "Arabic");
-                        i.putExtra("message", message);
-                        startActivity(i);
-                    }
-                }
-            } catch (JSONException e) {
-
-                Log.w("JSON Exception", e.getMessage());
-
-                Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                i.putExtra("crashed", true);
-                i.putExtra("Agent", agent);
-                i.putExtra("SalePoint", salePoint);
-                i.putExtra("Lang", "Arabic");
-                i.putExtra("up", "up");
-                i.putExtra("message", "not connected");
-                startActivity(i);
-            }
-
-            return null;
-        }
-
-
-        protected void onPostExecute(String file_url) {
-        }
-
-    }
 
     JSONParser jsonParser = new JSONParser();
     private static String url_save_trn_header = "http://yiserver.com/shirouq_sales_ws/save_trn_header.php"; // TRN Header.
@@ -1158,5 +1122,110 @@ public class SalePointInfoActivity extends AppCompatActivity {
             //pDialog.dismiss();
         }
 
+    }
+
+
+    public List<VisitResult> getAllSellected(String visit_id) {
+        List<VisitResult> visitResults = new ArrayList<>();
+
+        if (zainStickCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(1, 0, 
+                    zainStickStatuse_RG, zainStickBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (zainDangCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(1, 1, 
+                    zainDangStatuse_RG, zainDangBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (zainWashCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(1, 2, 
+                    zainWashStatuse_RG, zainWashBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (mtnStickCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(2, 0,
+                    mtnStickStatuse_RG, mtnStickBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (mtnDangCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(2, 1,
+                    mtnDangStatuse_RG, mtnDangBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (mtnWashCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(2, 2,
+                    mtnWashStatuse_RG, mtnWashBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (sudaniStickCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(3, 0,
+                    sudaniStickStatuse_RG, sudaniStickBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (sudaniDangCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(3, 1,
+                    sudaniDangStatuse_RG, sudaniDangBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+
+        if (sudaniWashCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(3, 2,
+                    sudaniWashStatuse_RG, sudaniWashBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            visitResults.add(visitResult);
+        }
+        
+
+        return visitResults;
+    }
+
+    public VisitResult setVisitResult(int opr, int AdType, RadioGroup StickStatuse_RG,
+                                      RadioGroup StickBadReason_RG) {
+        VisitResult visitResult = new VisitResult();
+
+
+        RadioButton selectedId = (RadioButton) findViewById(StickStatuse_RG.
+                getCheckedRadioButtonId());
+        int indexState = StickStatuse_RG.indexOfChild(selectedId);
+
+
+        if (indexState == 2) {
+            RadioButton selectedBadId = (RadioButton) findViewById(StickBadReason_RG.
+                    getCheckedRadioButtonId());
+            int indexBadState = StickBadReason_RG.indexOfChild(selectedBadId);
+
+            visitResult.setBad_state_reason(indexBadState);
+        }
+
+        visitResult.setOperater_id(opr);
+        visitResult.setAd_type(AdType);
+        visitResult.setAd_state(indexState);
+
+        return  visitResult;
     }
 }
