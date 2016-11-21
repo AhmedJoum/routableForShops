@@ -145,7 +145,7 @@ public class DAO extends SQLiteOpenHelper {
     public Cursor getVisits()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from visite where status = '0'", null);
+        Cursor res = db.rawQuery("select * from visite where synced = '0'", null);
         return  res;
     }
 
@@ -179,7 +179,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Cursor getVisitResults() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from visite_result where status = '0'", null);
+        Cursor res = db.rawQuery("select * from visite_result where synced = '0'", null);
         return res;
     }
 }

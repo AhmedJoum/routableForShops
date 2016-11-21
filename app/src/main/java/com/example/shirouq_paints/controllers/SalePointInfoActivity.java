@@ -29,8 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shirouq_paints.dao.DAO;
-import com.example.shirouq_paints.dao.VisitDAO;
-import com.example.shirouq_paints.dao.VisitResultDAO;
 import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.Route;
 import com.example.shirouq_paints.models.SalePoint;
@@ -192,10 +190,14 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 DAO DAO = new DAO(getApplicationContext());
                 Cursor cr = DAO.getSalePoint_(sp_code);
 
-                if (!(cr.moveToFirst()) || cr.getCount() ==0){
+
+                //if (!(cr.moveToFirst()) || cr.getCount() ==0)
+                if (cr.getCount() ==0){
                     salePoint.setSpCode(sp_code);
                     return;
                 }
+
+                cr.moveToFirst();
 
                 salePoint.setSpCode(cr.getString(0));
                 salePoint.setSpAddress(cr.getString(1));
@@ -205,9 +207,11 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 salePoint.setSpType(Integer.parseInt(cr.getString(5)));
                 salePoint.setStreet_type(Integer.parseInt(cr.getString(6)));
                 salePoint.setBlock_type(Integer.parseInt(cr.getString(7)));
-                route.setRoute_description(cr.getString(8));
+
                 salePoint.setLat(cr.getString(9));
                 salePoint.setLng(cr.getString(10));
+                salePoint.setRoute_desc(cr.getString(8));
+
 
                 setSalePointInfo();
             }
@@ -221,6 +225,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 String sp_owner = spOwnerTB.getText().toString();
                 String sp_address = spAddressTB.getText().toString();
                 String sp_phone = spPhoneTB.getText().toString();
+                String sp_route_desc = spRoatTB.getText().toString();
 
                 int sp_type = 0;
                 if (type1.isChecked()) {
@@ -296,6 +301,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
 
                 System.out.println(new SimpleDateFormat("yyyyMMddHHmm").format(new Date()));
 
+                salePoint.setSpCode(spCodeTB.getText().toString());
                 salePoint.setSpName(sp_name);
                 salePoint.setSpOwnerName(sp_owner);
                 salePoint.setSpAddress(sp_address);
@@ -303,6 +309,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 salePoint.setSpType(sp_type);
                 salePoint.setBlock_type(spBlock_type);
                 salePoint.setStreet_type(spStreet_type);
+                salePoint.setRoute_desc(sp_route_desc);
 
 
                 Visit visit = new Visit();
@@ -842,9 +849,17 @@ public class SalePointInfoActivity extends AppCompatActivity {
         typeRB = (RadioButton) spTypeRG.getChildAt(index);
         typeRB.setChecked(true);
 
+        int indexStreet = salePoint.getStreet_type();
+        RadioButton streetType = (RadioButton) spStreetTypeRG.getChildAt(indexStreet);
+        streetType.setChecked(true);
+
+        int indexBlock = salePoint.getBlock_type();
+        RadioButton streetBlock = (RadioButton) spBlockTypeRG.getChildAt(indexBlock);
+        streetBlock.setChecked(true);
+
         spPhoneTB.setText(salePoint.getSpPhone());
         spAddressTB.setText(salePoint.getSpAddress());
-        spRoatTB.setText(route.getRoute_description());
+        spRoatTB.setText(salePoint.getRoute_desc());
 
         lat = salePoint.getLat();
         lng = salePoint.getLng();

@@ -261,7 +261,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/spPhoneTB"
+                            android:id="@+id/spRoatTB"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/pbar"
@@ -269,6 +269,8 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="2"
                             android:hint="@string/salepoint_phone"
+                            android:visibility="gone"
+                            android:text="null"
                             android:inputType="number" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -290,16 +292,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.13">
 
+
+
                         <EditText
-                            android:id="@+id/spRoatTB"
+                            android:id="@+id/spPhoneTB"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/pbar"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:layout_weight=".8"
-                            android:hint="خط السير"
-                            android:inputType="textPersonName" />
+                            android:hint="@string/salepoint_phone"
+                            android:inputType="number" />
                     </android.support.design.widget.TextInputLayout>
 
 

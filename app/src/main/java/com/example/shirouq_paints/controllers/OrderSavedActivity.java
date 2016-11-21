@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.shirouq_paints.dao.DAO;
-import com.example.shirouq_paints.dao.VisitDAO;
-import com.example.shirouq_paints.dao.VisitResultDAO;
 import com.example.shirouq_paints.models.Agent;
 import com.example.shirouq_paints.models.SalePoint;
 import com.example.shirouq_paints.util.JSONParser;
@@ -180,7 +178,7 @@ public class OrderSavedActivity extends AppCompatActivity {
 
                 }
 
-
+                res.moveToNext();
             }
 
             return null;
@@ -249,7 +247,7 @@ public class OrderSavedActivity extends AppCompatActivity {
 
                 }
 
-
+                res.moveToNext();
             }
 
             return null;
@@ -318,7 +316,7 @@ public class OrderSavedActivity extends AppCompatActivity {
                     Log.w("JSON Exception", e.getMessage());
 
                 }
-
+                res.moveToNext();
 
             }
 
