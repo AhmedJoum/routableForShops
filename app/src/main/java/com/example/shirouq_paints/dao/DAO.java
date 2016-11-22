@@ -16,6 +16,8 @@ import com.example.shirouq_paints.models.VisitResult;
 
 public class DAO extends SQLiteOpenHelper {
 
+    private SQLiteDatabase mDatabase;
+
     public DAO(Context context) {
         super(context, "roatable", null, 1);
 
@@ -51,6 +53,9 @@ public class DAO extends SQLiteOpenHelper {
                 "  ad_state integer, " +
                 "  bad_state_reason integer, " +
                 "  synced int )");
+
+
+
 
     }
 
@@ -181,5 +186,11 @@ public class DAO extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from visite_result where synced = '0'", null);
         return res;
+    }
+
+
+    public void insertDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("insert into sale_point (sp_code, sp_address,  sp_name,  sp_owner, sp_phone, sp_type,  street_type, block_type, route_desc, lat, lng, synced) values ( '1', 'خرطوم', 'صيدلية المك نمر', 'هلال', '0987654321', '0', '1', '2', 'nn', '0', '0', '0');");
     }
 }
