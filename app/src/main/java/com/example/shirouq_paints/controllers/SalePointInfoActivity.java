@@ -935,7 +935,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 JSONObject json = jsonParser.makeHttpRequest(url_sp_info, "GET", params);
 
                 if (json == null) {
-                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
                     i.putExtra("crashed", true);
                     startActivity(i);
                 } else {
