@@ -40,7 +40,8 @@ public class OrderSavedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Agent agent = (Agent) getIntent().getSerializableExtra("Agent");
+        final Agent agent = new Agent();
+        agent.setA_id(1);
         final SalePoint salePoint = new SalePoint();
 
 
@@ -153,7 +154,7 @@ public class OrderSavedActivity extends AppCompatActivity {
                     JSONObject json = SalePointjsonParser.makeHttpRequest(url_sp_update, "GET", params);
 
                     if (json == null) {
-                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
                         i.putExtra("crashed", true);
                         startActivity(i);
                     } else {
@@ -222,7 +223,7 @@ public class OrderSavedActivity extends AppCompatActivity {
                     JSONObject json = SalePointjsonParser.makeHttpRequest(url_visit_update, "GET", params);
 
                     if (json == null) {
-                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
                         i.putExtra("crashed", true);
                         startActivity(i);
                     } else {
@@ -292,7 +293,7 @@ public class OrderSavedActivity extends AppCompatActivity {
                     JSONObject json = SalePointjsonParser.makeHttpRequest(url_visit_result_update, "GET", params);
 
                     if (json == null) {
-                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        Intent i = new Intent(getApplicationContext(), OrderSavedActivity.class);
                         i.putExtra("crashed", true);
                         startActivity(i);
                     } else {
