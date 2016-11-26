@@ -254,25 +254,40 @@
                     android:gravity="right"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="287dp"
-                        android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/ICON"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/spRoatTB"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/pbar"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_weight="2"
-                            android:hint="@string/salepoint_phone"
-                            android:visibility="gone"
-                            android:text="null"
-                            android:inputType="number" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:text="ICON"
+                            android:textDirection="rtl"
+                            android:layout_weight="1"/>
+
+                        <RadioButton
+                            android:id="@+id/YesICON"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textDirection="rtl"
+                            android:text="YES"
+                            android:layout_weight="1"/>
+
+                        <RadioButton
+                            android:id="@+id/NoICON"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textDirection="rtl"
+                            android:text="NO"
+                            android:layout_weight="1"/>
+
+                    </RadioGroup>
                 </LinearLayout>
 
                 <LinearLayout
@@ -291,7 +306,6 @@
                         android:layout_width="258dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.13">
-
 
 
                         <EditText
@@ -381,7 +395,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="منطقة صناعية"/>
+                            android:text="منطقة صناعية" />
 
                     </RadioGroup>
 
@@ -441,7 +455,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="الطريق السريع"/>
+                            android:text="الطريق السريع" />
 
                     </RadioGroup>
 
@@ -515,9 +529,9 @@
                 android:layout_below="@+id/searchLayout"
                 android:layout_weight="3"
                 android:background="#FFFFE0"
-                android:orientation="vertical"
                 android:clickable="true"
                 android:focusableInTouchMode="true"
+                android:orientation="vertical"
                 android:visibility="gone">
 
 

@@ -23,6 +23,10 @@ public class VisitResult implements Serializable {
 
 
 
+    private int ad_no;
+
+
+
     public String getVisit_id() {
         return visit_id;
     }
@@ -72,4 +76,11 @@ public class VisitResult implements Serializable {
         this.bad_state_reason = bad_state_reason;
     }
 
+    public int getAd_no() {
+        return ad_no;
+    }
+
+    public void setAd_no(int ad_no) {
+        this.ad_no = ad_no;
+    }
 }

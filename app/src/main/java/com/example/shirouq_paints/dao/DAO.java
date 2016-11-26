@@ -52,6 +52,7 @@ public class DAO extends SQLiteOpenHelper {
                 "  ad_type integer,  " +
                 "  ad_state integer, " +
                 "  bad_state_reason integer, " +
+                "  ad_no integer , " +
                 "  synced int )");
 
 
@@ -164,6 +165,7 @@ public class DAO extends SQLiteOpenHelper {
         contentValues.put("ad_type", "" + visitResult.getAd_type());
         contentValues.put("ad_state", visitResult.getAd_state());
         contentValues.put("bad_state_reason", visitResult.getBad_state_reason());
+        contentValues.put("ad_no", visitResult.getAd_no());
         contentValues.put("synced", 0);
 
         db.insert("visite_result ", null, contentValues);
