@@ -37,6 +37,9 @@ public class DAO extends SQLiteOpenHelper {
                 "  route_desc  text, " +
                 "  lat text, " +
                 "  lng text, " +
+                "  icon integer,  " +
+                "  zim integer, " +
+                "  evd integer, " +
                 "  synced int )");
 
         db.execSQL(" CREATE TABLE visite " +
@@ -84,6 +87,9 @@ public class DAO extends SQLiteOpenHelper {
         contentValues.put("route_desc", salePoint.getRoute_desc());
         contentValues.put("lat", salePoint.getLat());
         contentValues.put("lng", salePoint.getLng());
+        contentValues.put("icon", salePoint.getICON());
+        contentValues.put("zim", salePoint.getZIM());
+        contentValues.put("evd", salePoint.getEVD());
         contentValues.put("synced", 0);
 
         Cursor res = db.rawQuery("select * from sale_point where sp_code  = '" +

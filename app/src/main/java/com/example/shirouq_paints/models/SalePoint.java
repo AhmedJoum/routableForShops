@@ -37,6 +37,13 @@ public class SalePoint implements Serializable {
 
     private String route_desc;
 
+
+
+    int ICON;
+    int ZIM;
+    int EVD;
+
+
     public SalePoint() {
 
     }
@@ -153,6 +160,29 @@ public class SalePoint implements Serializable {
         this.route_desc = route_desc;
     }
 
+    public int getICON() {
+        return ICON;
+    }
+
+    public void setICON(int ICON) {
+        this.ICON = ICON;
+    }
+
+    public int getZIM() {
+        return ZIM;
+    }
+
+    public void setZIM(int ZIM) {
+        this.ZIM = ZIM;
+    }
+
+    public int getEVD() {
+        return EVD;
+    }
+
+    public void setEVD(int EVD) {
+        this.EVD = EVD;
+    }
 
 
 }

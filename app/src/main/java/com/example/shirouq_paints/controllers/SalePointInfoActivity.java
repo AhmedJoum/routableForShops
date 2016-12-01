@@ -91,6 +91,26 @@ public class SalePointInfoActivity extends AppCompatActivity {
     RadioButton type6;
     RadioButton type7;
     //
+
+    RadioGroup mICON;
+    //
+    RadioButton mYesICON;
+    RadioButton mNoICON;
+    //
+
+    RadioGroup mZIM;
+    //
+    RadioButton mYesZIM;
+    RadioButton mNoZIM;
+    //
+
+    RadioGroup mEVD;
+    //
+    RadioButton mYesEVD;
+    RadioButton mNoEVD;
+    //
+
+
     EditText spPhoneTB;
     EditText spAddressTB;
     EditText spRoatTB;
@@ -181,7 +201,6 @@ public class SalePointInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_sale_point_info_ar);
 
         init();
@@ -206,7 +225,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
 
 
                 //if (!(cr.moveToFirst()) || cr.getCount() ==0)
-                if (cr.getCount() ==0){
+                if (cr.getCount() == 0) {
                     salePoint.setSpCode(sp_code);
                     return;
                 }
@@ -225,6 +244,9 @@ public class SalePointInfoActivity extends AppCompatActivity {
 //                salePoint.setLat(cr.getString(9));
 //                salePoint.setLng(cr.getString(10));
                 salePoint.setRoute_desc(cr.getString(8));
+                salePoint.setICON(cr.getInt(11));
+                salePoint.setZIM(cr.getInt(12));
+                salePoint.setEVD(cr.getInt(13));
 
 
                 setSalePointInfo();
@@ -239,7 +261,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 String sp_owner = spOwnerTB.getText().toString();
                 String sp_address = spAddressTB.getText().toString();
                 String sp_phone = spPhoneTB.getText().toString();
-                String sp_route_desc = spRoatTB.getText().toString();
+//                String sp_route_desc = spRoatTB.getText().toString();
 
                 int sp_type = 0;
                 if (type1.isChecked()) {
@@ -265,6 +287,23 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 }
                 if (type7.isChecked()) {
                     sp_type = 6;
+                }
+
+                /**
+                 *
+                 */
+
+                int icon = 2;
+                if (mYesICON.isChecked()) {
+                    icon = 1;
+                }
+                int zim = 2;
+                if (mYesZIM.isChecked()) {
+                    zim = 1;
+                }
+                int evd = 2;
+                if(mYesEVD.isChecked()) {
+                    evd = 1;
                 }
 
                 /**
@@ -313,7 +352,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                     return;
                 }
 
-                System.out.println(new SimpleDateFormat("yyyyMMddHHmm").format(new Date()));
+                System.out.println(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
 
                 salePoint.setSpCode(spCodeTB.getText().toString());
                 salePoint.setSpName(sp_name);
@@ -323,7 +362,10 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 salePoint.setSpType(sp_type);
                 salePoint.setBlock_type(spBlock_type);
                 salePoint.setStreet_type(spStreet_type);
-                salePoint.setRoute_desc(sp_route_desc);
+                salePoint.setRoute_desc(" ");
+                salePoint.setICON(icon);
+                salePoint.setZIM(zim);
+                salePoint.setEVD(evd);
 
 
                 Visit visit = new Visit();
@@ -334,7 +376,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
 
                 List<VisitResult> visitResults = getAllSellected(visit.getVisit_id());
 
-                System.out.println(salePoint.getLng());
+                System.out.println(visit.getVisit_id());
 
 
                 DAO dao = new DAO(getApplicationContext());
@@ -343,7 +385,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
                 dao.insertSalePoint(salePoint);
                 dao.insertVisit(visit);
 
-                for(final VisitResult visitResult : visitResults) {
+                for (final VisitResult visitResult : visitResults) {
                     dao.insertVisitResult(visitResult);
                 }
 
@@ -719,9 +761,22 @@ public class SalePointInfoActivity extends AppCompatActivity {
         type6 = (RadioButton) findViewById(R.id.type6);
         type7 = (RadioButton) findViewById(R.id.type7);
         //
+        mICON = (RadioGroup) findViewById(R.id.ICON);
+        mZIM = (RadioGroup) findViewById(R.id.ZIM);
+        mEVD = (RadioGroup) findViewById(R.id.EVD);
+
+        mYesICON = (RadioButton) findViewById(R.id.YesICON);
+        mNoICON = (RadioButton) findViewById(R.id.NoICON);
+
+        mYesZIM = (RadioButton) findViewById(R.id.YesZIM);
+        mNoZIM = (RadioButton) findViewById(R.id.NoZIM);
+
+        mYesEVD = (RadioButton) findViewById(R.id.YesEVD);
+        mNoEVD = (RadioButton) findViewById(R.id.NoEVD);
+
         spPhoneTB = (EditText) findViewById(R.id.spPhoneTB);
         spAddressTB = (EditText) findViewById(R.id.spAddressTB);
-        spRoatTB = (EditText) findViewById(R.id.spRoatTB);
+        //spRoatTB = (EditText) findViewById(R.id.spRoatTB);
 
         spBlockTypeRG = (RadioGroup) findViewById(R.id.spBlockTypeRG);
         spStreetTypeRG = (RadioGroup) findViewById(R.id.spStreetypeRG);
@@ -748,17 +803,17 @@ public class SalePointInfoActivity extends AppCompatActivity {
         zainWashCB = (CheckBox) zainInfo.findViewById(R.id.WashCB);
 
         zainStick_details = zainInfo.findViewById(R.id.adType1);
-        zainStick_NoTB = (TextView)  zainStick_details.findViewById(R.id.AdNo);
+        zainStick_NoTB = (TextView) zainStick_details.findViewById(R.id.AdNo);
         zainStickStatuse_RG = (RadioGroup) zainStick_details.findViewById(R.id.AdStatusGroup);
         zainStickBadReason_RG = (RadioGroup) zainStick_details.findViewById(R.id.BadAdStatusGroup);
 
         zainDang_details = zainInfo.findViewById(R.id.adType2);
-        zainDang_NoTB = (TextView)  zainDang_details.findViewById(R.id.AdNo);
+        zainDang_NoTB = (TextView) zainDang_details.findViewById(R.id.AdNo);
         zainDangStatuse_RG = (RadioGroup) zainDang_details.findViewById(R.id.AdStatusGroup);
         zainDangBadReason_RG = (RadioGroup) zainDang_details.findViewById(R.id.BadAdStatusGroup);
 
         zainWash_details = zainInfo.findViewById(R.id.adType3);
-        zainWash_NoTB = (TextView)  zainWash_details.findViewById(R.id.AdNo);
+        zainWash_NoTB = (TextView) zainWash_details.findViewById(R.id.AdNo);
         zainWashStatuse_RG = (RadioGroup) zainWash_details.findViewById(R.id.AdStatusGroup);
         zainWashBadReason_RG = (RadioGroup) zainWash_details.findViewById(R.id.BadAdStatusGroup);
 
@@ -767,17 +822,17 @@ public class SalePointInfoActivity extends AppCompatActivity {
         mtnWashCB = (CheckBox) mtnInfo.findViewById(R.id.WashCB);
 
         mtnStick_details = mtnInfo.findViewById(R.id.adType1);
-        mtnStick_NoTB = (TextView)  mtnStick_details.findViewById(R.id.AdNo);
+        mtnStick_NoTB = (TextView) mtnStick_details.findViewById(R.id.AdNo);
         mtnStickStatuse_RG = (RadioGroup) mtnStick_details.findViewById(R.id.AdStatusGroup);
         mtnStickBadReason_RG = (RadioGroup) mtnStick_details.findViewById(R.id.BadAdStatusGroup);
 
         mtnDang_details = mtnInfo.findViewById(R.id.adType2);
-        mtnDang_NoTB = (TextView)  mtnDang_details.findViewById(R.id.AdNo);
+        mtnDang_NoTB = (TextView) mtnDang_details.findViewById(R.id.AdNo);
         mtnDangStatuse_RG = (RadioGroup) mtnDang_details.findViewById(R.id.AdStatusGroup);
         mtnDangBadReason_RG = (RadioGroup) mtnDang_details.findViewById(R.id.BadAdStatusGroup);
 
         mtnWash_details = mtnInfo.findViewById(R.id.adType3);
-        mtnWash_NoTB = (TextView)  mtnWash_details.findViewById(R.id.AdNo);
+        mtnWash_NoTB = (TextView) mtnWash_details.findViewById(R.id.AdNo);
         mtnWashStatuse_RG = (RadioGroup) mtnWash_details.findViewById(R.id.AdStatusGroup);
         mtnWashBadReason_RG = (RadioGroup) mtnWash_details.findViewById(R.id.BadAdStatusGroup);
 
@@ -786,17 +841,17 @@ public class SalePointInfoActivity extends AppCompatActivity {
         sudaniWashCB = (CheckBox) sudaniInfo.findViewById(R.id.WashCB);
 
         sudaniStick_details = sudaniInfo.findViewById(R.id.adType1);
-        sudaniStick_NoTB = (TextView)  sudaniStick_details.findViewById(R.id.AdNo);
+        sudaniStick_NoTB = (TextView) sudaniStick_details.findViewById(R.id.AdNo);
         sudaniStickStatuse_RG = (RadioGroup) sudaniStick_details.findViewById(R.id.AdStatusGroup);
         sudaniStickBadReason_RG = (RadioGroup) sudaniStick_details.findViewById(R.id.BadAdStatusGroup);
 
         sudaniDang_details = sudaniInfo.findViewById(R.id.adType2);
-        sudaniDang_NoTB = (TextView)  mtnDang_details.findViewById(R.id.AdNo);
+        sudaniDang_NoTB = (TextView) mtnDang_details.findViewById(R.id.AdNo);
         sudaniDangStatuse_RG = (RadioGroup) sudaniDang_details.findViewById(R.id.AdStatusGroup);
         sudaniDangBadReason_RG = (RadioGroup) sudaniDang_details.findViewById(R.id.BadAdStatusGroup);
 
         sudaniWash_details = sudaniInfo.findViewById(R.id.adType3);
-        sudaniWash_NoTB = (TextView)  sudaniWash_details.findViewById(R.id.AdNo);
+        sudaniWash_NoTB = (TextView) sudaniWash_details.findViewById(R.id.AdNo);
         sudaniWashStatuse_RG = (RadioGroup) sudaniWash_details.findViewById(R.id.AdStatusGroup);
         sudaniWashBadReason_RG = (RadioGroup) sudaniWash_details.findViewById(R.id.BadAdStatusGroup);
 
@@ -818,7 +873,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             spOwnerTB.setText(salePoint.getSpOwnerName());
             ((RadioButton) spTypeRG.getChildAt(salePoint.getSpType())).setChecked(true);
             spPhoneTB.setText(salePoint.getSpPhone());
-            spRoatTB.setText(route.getRoute_description());
+            //spRoatTB.setText(route.getRoute_description());
             spAddressTB.setText(salePoint.getSpAddress());
 
             ((RadioButton) spBlockTypeRG.getChildAt(salePoint.getBlock_type())).setChecked(true);
@@ -843,7 +898,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             spCodeTB.setText("");
             spAddressTB.setText("");
             spPhoneTB.setText("");
-            spRoatTB.setText("");
+           // spRoatTB.setText("");
         }
     }
 
@@ -872,6 +927,19 @@ public class SalePointInfoActivity extends AppCompatActivity {
         typeRB = (RadioButton) spTypeRG.getChildAt(index);
         typeRB.setChecked(true);
 
+
+        int indexICON = salePoint.getICON();
+        RadioButton Icon = (RadioButton) mICON.getChildAt(indexICON);
+        Icon.setChecked(true);
+
+        int indexZIM = salePoint.getZIM();
+        RadioButton Zim = (RadioButton) mZIM.getChildAt(indexZIM);
+        Zim.setChecked(true);
+
+        int indexEVD = salePoint.getICON();
+        RadioButton Evd = (RadioButton) mEVD.getChildAt(indexEVD);
+        Evd.setChecked(true);
+
         int indexStreet = salePoint.getStreet_type();
         RadioButton streetType = (RadioButton) spStreetTypeRG.getChildAt(indexStreet);
         streetType.setChecked(true);
@@ -882,7 +950,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
 
         spPhoneTB.setText(salePoint.getSpPhone());
         spAddressTB.setText(salePoint.getSpAddress());
-        spRoatTB.setText(salePoint.getRoute_desc());
+        //spRoatTB.setText(salePoint.getRoute_desc());
 
         lat = salePoint.getLat();
         lng = salePoint.getLng();
@@ -912,173 +980,24 @@ public class SalePointInfoActivity extends AppCompatActivity {
     }
 
 
-    JSONParser SalePointjsonParser = new JSONParser();
-    private static String url_sp_info = "http://consulsat-sd.com/roatable/sp_get_info.php";
-    private static String url_sp_update = "http://consulsat-sd.com/roatable/update_salepoint.php";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
-    private static final String TAG_SP_ID = "sp_id";
-    private static final String TAG_SP_NAME = "sp_name";
-    private static final String TAG_SP_TYPE = "sp_type";
-    private static final String TAG_SP_OWNER = "sp_owner";
-    private static final String TAG_SP_PHONE = "sp_phone";
-    private static final String TAG_SP_ADDRESS = "sp_address";
-    private static final String TAG_SP_BLOCK_TYPE = "block_type";
-    private static final String TAG_SP_STREET_TYPE = "street_type";
-    private static final String TAG_LAT = "lat";
-    private static final String TAG_LNG = "lng";
-    private static final String TAG_ROAT_ID = "roat_id";
-    private static final String TAG_ROAT_DES = "roat_description";
-
 
     /**
      *
      */
 
 
-    class SalePointService extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-
-        protected String doInBackground(String... args) {
-
-            String sp_r_id = agent.getR_id();
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("sp_code", sp_code));
-            params.add(new BasicNameValuePair("r_id", sp_r_id));
-
-            try {
-
-                JSONObject json = jsonParser.makeHttpRequest(url_sp_info, "GET", params);
-
-                if (json == null) {
-                    Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                    i.putExtra("crashed", true);
-                    startActivity(i);
-                } else {
-
-                    Log.d("Create Response", json.toString());
-
-
-                    int success = json.getInt(TAG_SUCCESS);
-                    int sp_id = json.getInt(TAG_SP_ID);
-                    String sp_name = json.getString(TAG_SP_NAME);
-                    int sp_type = json.getInt(TAG_SP_TYPE);
-                    String sp_owner = json.getString(TAG_SP_OWNER);
-                    String sp_phone = json.getString(TAG_SP_PHONE);
-                    String sp_address = json.getString(TAG_SP_ADDRESS);
-                    String lat = json.getString(TAG_LAT);
-                    String lng = json.getString(TAG_LNG);
-                    String roat_id = json.getString(TAG_ROAT_ID);
-                    String message = json.getString(TAG_MESSAGE);
-                    String roat_description = json.getString(TAG_ROAT_DES);
-                    int block_type = json.getInt(TAG_SP_BLOCK_TYPE);
-                    int street_type = json.getInt(TAG_SP_STREET_TYPE);
-
-                    if (success == 1) {
-                        Agent agent = new Agent();
-                        SalePoint salePoint = new SalePoint();
-                        Route route = new Route();
-
-                        salePoint.setSpID("" + sp_id);
-                        salePoint.setSpName(sp_name);
-                        salePoint.setSpCode(sp_code);
-                        salePoint.setSpType(sp_type);
-                        salePoint.setRout_id(roat_id);
-                        salePoint.setSpOwnerName(sp_owner);
-                        salePoint.setSpPhone(sp_phone);
-                        salePoint.setSpAddress(sp_address);
-                        salePoint.setBlock_type(block_type);
-                        salePoint.setStreet_type(street_type);
-                        salePoint.setLat(lat);
-                        salePoint.setLng(lng);
-                        route.setRoute_description(roat_description);
-
-                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                        i.putExtra("Agent", agent);
-                        i.putExtra("SalePoint", salePoint);
-                        i.putExtra("Route", route);
-                        i.putExtra("Lang", "Arabic");
-                        i.putExtra("message", message);
-                        startActivity(i);
-
-                        finish();
-                    } else if (success == 2) {
-                        Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                        i.putExtra("crashed", false);
-                        i.putExtra("Agent", agent);
-                        i.putExtra("SalePoint", salePoint);
-                        i.putExtra("Lang", "Arabic");
-                        i.putExtra("up", "");
-                        i.putExtra("message", message);
-                        startActivity(i);
-                    }
-                }
-            } catch (JSONException e) {
-
-                Log.w("JSON Exception", e.getMessage());
-
-                Intent i = new Intent(getApplicationContext(), SalePointInfoActivity.class);
-                i.putExtra("crashed", true);
-                i.putExtra("Agent", agent);
-                i.putExtra("SalePoint", salePoint);
-                i.putExtra("Lang", "Arabic");
-                i.putExtra("message", "not connected");
-                i.putExtra("up", "");
-                startActivity(i);
-            }
-
-            return null;
-        }
-
-
-        protected void onPostExecute(String file_url) {
-        }
-
-    }
-
-
-
-    JSONParser jsonParser = new JSONParser();
-    private static String url_save_trn_header = "http://yiserver.com/shirouq_sales_ws/save_trn_header.php"; // TRN Header.
-    private static String url_save_trn_details = "http://yiserver.com/shirouq_sales_ws/save_trn_details.php"; // TRN Details.
-    private static final String TAG_TRN_ID = "trn_id";
-
-
-
 
     public List<VisitResult> getAllSellected(String visit_id) {
         List<VisitResult> visitResults = new ArrayList<>();
 
-        if (zainStickCB.isChecked()) {
-            VisitResult visitResult = setVisitResult(1, 0, 
-                    zainStickStatuse_RG, zainStickBadReason_RG);
-            visitResult.setVisit_id(visit_id);
-
-            int AdNo;
-            if(!zainStick_NoTB.getText().toString().isEmpty()) {
-                 AdNo = Integer.parseInt(zainStick_NoTB.getText().toString());
-            } else {
-                AdNo = 0;
-            }
-            visitResult.setAd_no(AdNo);
-
-            visitResults.add(visitResult);
-        }
 
         if (zainDangCB.isChecked()) {
-            VisitResult visitResult = setVisitResult(1, 1, 
+            VisitResult visitResult = setVisitResult(1, 1,
                     zainDangStatuse_RG, zainDangBadReason_RG);
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!zainDang_NoTB.getText().toString().isEmpty()) {
+            if (!zainDang_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(zainDang_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1088,13 +1007,31 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResults.add(visitResult);
         }
 
+        if (zainStickCB.isChecked()) {
+            VisitResult visitResult = setVisitResult(1, 0,
+                    zainStickStatuse_RG, zainStickBadReason_RG);
+            visitResult.setVisit_id(visit_id);
+
+            int AdNo;
+            if (!zainStick_NoTB.getText().toString().isEmpty()) {
+                AdNo = Integer.parseInt(zainStick_NoTB.getText().toString());
+            } else {
+                AdNo = 0;
+            }
+            visitResult.setAd_no(AdNo);
+
+            visitResults.add(visitResult);
+        }
+
+
+
         if (zainWashCB.isChecked()) {
-            VisitResult visitResult = setVisitResult(1, 2, 
+            VisitResult visitResult = setVisitResult(1, 2,
                     zainWashStatuse_RG, zainWashBadReason_RG);
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!zainWash_NoTB.getText().toString().isEmpty()) {
+            if (!zainWash_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(zainWash_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1111,13 +1048,12 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!mtnStick_NoTB.getText().toString().isEmpty()) {
+            if (!mtnStick_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(mtnStick_NoTB.getText().toString());
             } else {
                 AdNo = 0;
             }
             visitResult.setAd_no(AdNo);
-
 
 
             visitResults.add(visitResult);
@@ -1129,7 +1065,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!mtnDang_NoTB.getText().toString().isEmpty()) {
+            if (!mtnDang_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(mtnDang_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1145,7 +1081,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!mtnWash_NoTB.getText().toString().isEmpty()) {
+            if (!mtnWash_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(mtnWash_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1161,7 +1097,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!sudaniStick_NoTB.getText().toString().isEmpty()) {
+            if (!sudaniStick_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(sudaniStick_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1177,7 +1113,7 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!sudaniDang_NoTB.getText().toString().isEmpty()) {
+            if (!sudaniDang_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(sudaniDang_NoTB.getText().toString());
             } else {
                 AdNo = 0;
@@ -1193,16 +1129,16 @@ public class SalePointInfoActivity extends AppCompatActivity {
             visitResult.setVisit_id(visit_id);
 
             int AdNo;
-            if(!sudaniWash_NoTB.getText().toString().isEmpty()) {
+            if (!sudaniWash_NoTB.getText().toString().isEmpty()) {
                 AdNo = Integer.parseInt(sudaniWash_NoTB.getText().toString());
             } else {
                 AdNo = 0;
             }
             visitResult.setAd_no(AdNo);
-            
+
             visitResults.add(visitResult);
         }
-        
+
 
         return visitResults;
     }
@@ -1211,24 +1147,57 @@ public class SalePointInfoActivity extends AppCompatActivity {
                                       RadioGroup StickBadReason_RG) {
         VisitResult visitResult = new VisitResult();
 
+        int excellent = 2131558575;
+        int good = 2131558576;
+        int bad = 2131558577;
 
-        RadioButton selectedId = (RadioButton) findViewById(StickStatuse_RG.
-                getCheckedRadioButtonId());
-        int indexState = StickStatuse_RG.indexOfChild(selectedId);
+
+        int id = StickStatuse_RG.getCheckedRadioButtonId();
+
+        int indexState = 0;
+
+        if(id == excellent){
+            indexState = 0;
+        }
+
+        if (id == good){
+            indexState = 1;
+        }
 
 
-        if (indexState == 2) {
-            RadioButton selectedBadId = (RadioButton) findViewById(StickBadReason_RG.
-                    getCheckedRadioButtonId());
-            int indexBadState = StickBadReason_RG.indexOfChild(selectedBadId);
 
-            visitResult.setBad_state_reason(indexBadState);
+        //
+        //
+        //System.out.println(id);
+
+        if(id == bad) {
+
+            int badId = StickBadReason_RG.
+                    getCheckedRadioButtonId();
+
+            int indexBadState = 0;
+
+            if(badId == 2131558580) {
+                indexBadState = 0;
+            }
+
+            if (badId == 2131558581){
+                indexBadState = 1;
+            }
+
+            if (badId == 2131558582){
+                indexBadState = 2;
+            }
+
+            System.out.println(badId);
+
+            visitResult.setBad_state_reason(indexBadState); //2131558580, 2131558581, 2131558582
         }
 
         visitResult.setOperater_id(opr);
         visitResult.setAd_type(AdType);
         visitResult.setAd_state(indexState);
 
-        return  visitResult;
+        return visitResult;
     }
 }

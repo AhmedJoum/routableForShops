@@ -528,6 +528,9 @@ public class OrderSavedActivity extends AppCompatActivity {
                             int block_type = c.getInt(TAG_SP_BLOCK_TYPE);
                             int street_type = c.getInt(TAG_SP_STREET_TYPE);
                             String sp_code = c.getString("sp_code");
+                            int icon = c.getInt("icon");
+                            int zim = c.getInt("zim");
+                            int evd = c.getInt("evd");
 
 
                             Agent agent = new Agent();
@@ -546,6 +549,9 @@ public class OrderSavedActivity extends AppCompatActivity {
                             salePoint.setLat(lat);
                             salePoint.setLng(lng);
                             salePoint.setRoute_desc(route_desc);
+                            salePoint.setICON(icon);
+                            salePoint.setEVD(evd);
+                            salePoint.setZIM(zim);
 
                             DAO dao = new DAO(getApplicationContext());
                             dao.insertSalePoint(salePoint);
