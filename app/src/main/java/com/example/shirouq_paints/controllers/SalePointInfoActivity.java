@@ -1164,7 +1164,9 @@ public class SalePointInfoActivity extends AppCompatActivity {
             indexState = 1;
         }
 
-
+        if (id == bad){
+            indexState = 2;
+        }
 
         //
         //

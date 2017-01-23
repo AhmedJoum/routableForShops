@@ -187,9 +187,9 @@ public class OrderSavedActivity extends AppCompatActivity {
 
                 new UpdateSalePointService().execute();
 
-                new UpdateVisit().execute();
+               // new UpdateVisit().execute();
 
-                new UpdateVisitResult().execute();
+               // new UpdateVisitResult().execute();
 
 
                 succed();
@@ -266,6 +266,8 @@ public class OrderSavedActivity extends AppCompatActivity {
 
             while (!res.isAfterLast()) {
 
+                int  x =  res.getInt(13);
+
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("sp_code", res.getString(0)));
@@ -279,6 +281,9 @@ public class OrderSavedActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("route_desc", "" + res.getString(8)));
                 params.add(new BasicNameValuePair("lat", "" + res.getString(9)));
                 params.add(new BasicNameValuePair("lng", res.getString(10)));
+                params.add(new BasicNameValuePair("icon","" + res.getInt(11)));
+                params.add(new BasicNameValuePair("zim", "" + res.getInt(12)));
+                params.add(new BasicNameValuePair("evd", "" + res.getInt(13)));
 
                 try {
 

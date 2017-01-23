@@ -19,7 +19,7 @@ public class DAO extends SQLiteOpenHelper {
     private SQLiteDatabase mDatabase;
 
     public DAO(Context context) {
-        super(context, "roatable", null, 1);
+        super(context, "roatable", null, 3);
 
     }
 
@@ -65,11 +65,11 @@ public class DAO extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS sale_point");
-        db.execSQL("DROP TABLE IF EXISTS visite");
-        db.execSQL("DROP TABLE IF EXISTS visite_result");
-
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS sale_point");
+//        db.execSQL("DROP TABLE IF EXISTS visite");
+//        db.execSQL("DROP TABLE IF EXISTS visite_result");
+//
+//        onCreate(db);
     }
 
     public boolean insertSalePoint(SalePoint salePoint) {
@@ -115,7 +115,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Cursor getSalePoints() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from sale_point where synced = '0'", null);
+        Cursor res = db.rawQuery("select * from sale_point  ", null); //where synced = '0'
         return res;
     }
 
