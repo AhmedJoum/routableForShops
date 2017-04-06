@@ -187,9 +187,9 @@ public class OrderSavedActivity extends AppCompatActivity {
 
                 new UpdateSalePointService().execute();
 
-               // new UpdateVisit().execute();
+                new UpdateVisit().execute();
 
-               // new UpdateVisitResult().execute();
+                new UpdateVisitResult().execute();
 
 
                 succed();

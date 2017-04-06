@@ -19,7 +19,7 @@ public class DAO extends SQLiteOpenHelper {
     private SQLiteDatabase mDatabase;
 
     public DAO(Context context) {
-        super(context, "roatable", null, 3);
+        super(context, "roatable", null, 5);
 
     }
 
@@ -157,7 +157,7 @@ public class DAO extends SQLiteOpenHelper {
     public Cursor getVisits()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from visite where synced = '0'", null);
+        Cursor res = db.rawQuery("select * from visite ", null); //where synced = '0'
         return  res;
     }
 
@@ -192,7 +192,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Cursor getVisitResults() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from visite_result where synced = '0'", null);
+        Cursor res = db.rawQuery("select * from visite_result ", null); //where synced = '0'
         return res;
     }
 
