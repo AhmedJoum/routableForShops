@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Zain Merchandising</string>
+    <string name="app_name">Zain Shops</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -16,6 +16,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_step_tow">StepTowActivity</string>
     <string name="salepoint_code">كود النقطه </string>
+    <string name="city_code">كود المدينة </string>
     <string name="salepoint_name">اسم النقطه</string>
     <string name="salepoint_sup">اسم المسئول</string>
     <string name="salepoint_type">نوع النقطه </string>
@@ -30,23 +31,54 @@
     <string name="danglers"> اعلانات معلقه</string>
     <string name="wash_lines"> حبل غسيل </string>
 
-    <string-array name="products">
-        <item>بقالة</item>
-        <item>مكتبه </item>
-        <item>اتصالات</item>
-        <item>اخرى</item>
+    <string-array name="adCodes">
+        <item>SHB ON  </item>
+        <item>SHB W F2</item>
+        <item>SHB SM  </item>
+        <item>SHB B1  </item>
+        <item>SHB MB  </item>
+        <item>QBD F1  </item>
+        <item>QBD F2  </item>
+        <item>QBD F3  </item>
+        <item>DCR F1  </item>
+        <item>EGY B1  </item>
+        <item>ETH F1  </item>
+        <item>SRY F1  </item>
+        <item>ERT F1  </item>
+        <item>CHN F1  </item>
+        <item>EZE ON  </item>
+        <item>EZE ON  </item>
+        <item>EZE W F3</item>
+        <item>EZE B1  </item>
+        <item>RBK B1  </item>
+        <item>OPA F1  </item>
+        <item>OPA F2  </item>
+        <item>MK F1   </item>
+        <item>CA F1   </item>
+        <item>ZTX P1  </item>
+        <item>4G B1   </item>
+        <item>4G MB F1</item>
+        <item>UAE F1  </item>
+        <item>EZE IT  </item>
     </string-array>
-    
 
-        <string name="excellent">ممتاز</string>
-        <string name="good">جيد</string>
-        <string name="bad">سيئ</string>
+    <string-array name="adQTY">
+        <item>adequate			</item>
+        <item>low				</item>
+        <item>very low			</item>
+        <item>none				</item>
+        <item>To be discontinued</item>
+        <item>Withdrawn			</item>
+    </string-array>
+
+    <string name="excellent">ممتاز</string>
+    <string name="good">جيد</string>
+    <string name="bad">سيئ</string>
 
 
+    <string name="brock">مكسورة</string>
+    <string name="cut">ممزقة</string>
+    <string name="else_">اخرى..</string>
 
-        <string name="brock">مكسورة</string>
-        <string name="cut">ممزقة</string>
-        <string name="else_">اخرى..</string>
 
-    
 </resources>

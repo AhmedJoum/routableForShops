@@ -12,101 +12,122 @@
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
         android:layoutDirection="rtl"
-        android:orientation="horizontal">
-
-
-        <EditText
-            android:id="@+id/AdNo"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:hint="العدد"
-            android:inputType="number" />
-
-        <RadioGroup
-            android:id="@+id/AdStatusGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <RadioButton
-                android:id="@+id/AdStatus1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/excellent" />
-
-            <RadioButton
-                android:id="@+id/AdStatus2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/good" />
-
-            <RadioButton
-                android:id="@+id/AdStatus3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/bad" />
-
-
-        </RadioGroup>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/BadAdInfoDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchLayout"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:layoutDirection="rtl"
-        android:gravity="left"
         android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="2">
+        android:weightSum="4">
 
 
-        <RadioGroup
-            android:id="@+id/BadAdStatusGroup"
-            android:layout_width="294dp"
+        <Spinner
+            android:id="@+id/ad_qty_spinner"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="fill"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <RadioButton
-                android:id="@+id/BadAdStatus1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/brock" />
-
-            <RadioButton
-                android:id="@+id/BadAdStatus2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cut" />
-
-            <RadioButton
-                android:id="@+id/BadAdStatus3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/else_" />
+            android:layout_marginTop="5dp"
+            android:entries="@array/adQTY"
+            android:textDirection="rtl"
+            android:textSize="20dp" />
 
 
-        </RadioGroup>
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/addCardBtn"-->
+        <!--android:layout_width="39dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginEnd="23dp"-->
+        <!--android:layout_marginRight="23dp"-->
+        <!--android:src="@android:drawable/ic_delete" />-->
+
+        <!--<RadioGroup-->
+        <!--android:id="@+id/AdStatusGroup"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="4">-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/AdStatus1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="@string/excellent" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/AdStatus2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="@string/good" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/AdStatus3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="@string/bad" />-->
+
+
+        <!--</RadioGroup>-->
 
 
     </LinearLayout>
+
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/BadAdInfoDetails"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/searchLayout"-->
+    <!--android:layout_marginBottom="15dp"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:layoutDirection="rtl"-->
+    <!--android:gravity="left"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:visibility="gone"-->
+    <!--android:weightSum="2">-->
+
+
+    <!--<RadioGroup-->
+    <!--android:id="@+id/BadAdStatusGroup"-->
+    <!--android:layout_width="294dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:layout_marginRight="15dp"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:weightSum="4">-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/BadAdStatus1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="@string/brock" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/BadAdStatus2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="@string/cut" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/BadAdStatus3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="@string/else_" />-->
+
+
+    <!--</RadioGroup>-->
+
+
+    <!--</LinearLayout>-->
 
 
 </LinearLayout>

@@ -1,125 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:id="@+id/InfoLayout"
+        android:id="@+id/OprInfoDetails2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/searchLayout"
-        android:layout_weight="3"
-        android:orientation="vertical"
-        android:layoutDirection="rtl"
-        android:visibility="visible">
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <LinearLayout
-            android:id="@+id/OprInfoDetails1"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/ad_code_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:entries="@array/adCodes"
+            android:textSize="20dp" />
+
+
+        <!--<include-->
+        <!--android:id="@+id/adType2"-->
+        <!--layout="@layout/ad_type" />-->
+
+
+        <Spinner
+            android:id="@+id/ad_qty_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:entries="@array/adQTY"
+            android:textDirection="rtl"
+            android:textSize="20dp" />
+
+
+        <TextView
             android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal">
-
-
-
-
-            <CheckBox
-                android:id="@+id/StickCkB"
-                android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="fill"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/stickers"
-                android:textDirection="rtl"
-                android:textSize="20dp" />
-
-
-            <include layout="@layout/ad_type" android:id="@+id/adType1"/>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <LinearLayout
-            android:id="@+id/OprInfoDetails2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/DangCB"
-                android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="fill"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/danglers"
-                android:textDirection="rtl"
-                android:textSize="20dp" />
-
-
-            <include layout="@layout/ad_type" android:id="@+id/adType2"/>
-
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <LinearLayout
-            android:id="@+id/zainInfoDetails3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="3"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/WashCB"
-                android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="fill"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/wash_lines"
-                android:textDirection="rtl"
-                android:textSize="20dp" />
-
-            <include layout="@layout/ad_type" android:id="@+id/adType3" />
-
-        </LinearLayout>
-
+            android:layout_width="39dp"
+            android:text="x"
+            android:textSize="25dp"
+            android:textColor="#ff0000"
+            android:textAlignment="center"
+            android:id="@+id/deleteTV"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>
