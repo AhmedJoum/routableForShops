@@ -14,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/searchLayout"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -23,12 +21,12 @@
             android:id="@+id/ad_code_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:entries="@array/adCodes"
+            android:entries="@array/posterCards"
+            android:textAlignment="textStart"
             android:textSize="20dp" />
 
 
@@ -37,29 +35,15 @@
         <!--layout="@layout/ad_type" />-->
 
 
-        <Spinner
-            android:id="@+id/ad_qty_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="2"
-            android:entries="@array/adQTY"
-            android:textDirection="rtl"
-            android:textSize="20dp" />
-
-
         <TextView
             android:layout_height="match_parent"
             android:layout_width="39dp"
             android:text="x"
             android:textSize="25dp"
             android:textColor="#ff0000"
-            android:textAlignment="center"
-            android:id="@+id/deleteTV"/>
+            android:textAlignment="textEnd"
+            android:id="@+id/deleteTV"
+            android:layout_weight="2.45" />
 
     </LinearLayout>
 

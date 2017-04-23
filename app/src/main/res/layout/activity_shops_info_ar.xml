@@ -52,7 +52,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pbar"
-
                 android:layout_marginRight="15dp"
                 android:layout_weight="0.69"
                 android:hint="@string/salepoint_code"
@@ -80,6 +79,185 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/operatorInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchLayout"
+
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/salePointInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cancelBtn"
+            android:layout_alignEnd="@+id/nextBtn"
+            android:layout_alignRight="@+id/nextBtn"
+            android:layout_below="@+id/searchLayout"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/spInfo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="right"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/spNameTB"
+                        android:layout_width="265dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pbar"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:hint="@string/salepoint_name"
+                        android:inputType="textPersonName" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="291dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cityCodeTB"
+                        android:layout_width="265dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pbar"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:hint="@string/city_code"
+                        android:inputType="textPersonName" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/spInfo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="left"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <RadioGroup
+                android:id="@+id/spTypeRG"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <RadioButton
+                    android:id="@+id/type1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Shop" />
+
+                <RadioButton
+                    android:id="@+id/type2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Franchise" />
+
+                <RadioButton
+                    android:id="@+id/type3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Dealer" />
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/NoOfHolderLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left"
+        android:layoutDirection="ltr"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/HolderNoTB"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pbar"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="No. of Holder"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="291dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/StandNoTB"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pbar"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="No. of Stands"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/stepTwo_form"
         android:layout_width="match_parent"
@@ -87,152 +265,29 @@
         android:layout_above="@+id/addCardBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/searchLayout"
+        android:layout_below="@+id/operatorInfo"
         android:clickable="true"
         android:focusableInTouchMode="true"
         android:isScrollContainer="false"
-        android:layoutDirection="rtl"
+        android:layoutDirection="ltr"
+        android:gravity="start"
         android:visibility="visible">
 
-
         <LinearLayout
-            android:id="@+id/operatorInfo"
+            android:id="@+id/visitResultHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/cancelBtn"
-            android:layout_alignEnd="@+id/nextBtn"
-            android:layout_alignRight="@+id/nextBtn"
-            android:layout_below="@+id/searchLayout"
-            android:layout_marginBottom="300dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/salePointInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/cancelBtn"
-                android:layout_alignEnd="@+id/nextBtn"
-                android:layout_alignRight="@+id/nextBtn"
-                android:layout_below="@+id/searchLayout"
-                android:clickable="true"
-                android:focusableInTouchMode="true"
-                android:layoutDirection="rtl"
-                android:orientation="vertical"
-                android:visibility="visible"
-                android:weightSum="4">
-
-                <LinearLayout
-                    android:id="@+id/spInfo1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusableInTouchMode="true"
-                    android:gravity="right"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="291dp"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/spNameTB"
-                            android:layout_width="265dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/pbar"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:hint="@string/salepoint_name"
-                            android:inputType="textPersonName" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="291dp"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/cityCodeTB"
-                            android:layout_width="265dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/pbar"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:hint="@string/city_code"
-                            android:inputType="textPersonName" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="258dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.13">
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/spInfo2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="left"
-                android:layoutDirection="ltr"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-
-                <RadioGroup
-                    android:id="@+id/spTypeRG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <RadioButton
-                        android:id="@+id/type1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Shop" />
-
-                    <RadioButton
-                        android:id="@+id/type2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Franchise" />
-
-                    <RadioButton
-                        android:id="@+id/type3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Dealer" />
-                </RadioGroup>
-
-
-            </LinearLayout>
-
+            android:gravity="start"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
-                android:id="@+id/zainCB"
+                android:id="@+id/DanglersInitCB"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -242,14 +297,158 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1.75"
-                android:background="#D8BFD8"
-                android:text="@string/zain"
+                android:background="#DCDCDC"
+                android:text="Danglers"
                 android:textColor="#000000"
-                android:textDirection="rtl"
-                android:textSize="25dp" />
+                android:textSize="23dp" />
 
+            <LinearLayout
+                android:id="@+id/DanglerssInitCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:visibility="gone">
 
+            </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Initial"
+                android:textAlignment="center"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/flyersBrochuresInitCB"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1.75"
+                android:background="#DCDCDC"
+                android:text="Flyers / Brochures"
+                android:textColor="#000000"
+                android:textSize="23dp" />
+
+            <LinearLayout
+                android:id="@+id/flyersBrochuresInitCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/postersInitCB"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1.75"
+                android:background="#DCDCDC"
+                android:text="Posters"
+                android:textColor="#000000"
+                android:textSize="23dp" />
+
+            <LinearLayout
+                android:id="@+id/postersInitCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Present"
+                android:textAlignment="center"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/flyersBrochuresPresentCB"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1.75"
+                android:background="#DCDCDC"
+                android:text="Flyers / Brochures"
+                android:textColor="#000000"
+                android:textSize="23dp" />
+
+            <LinearLayout
+                android:id="@+id/flyersBrochuresPresentCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/postersPresentCB"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1.75"
+                android:background="#DCDCDC"
+                android:text="Posters"
+                android:textColor="#000000"
+                android:textSize="23dp" />
+
+            <LinearLayout
+                android:id="@+id/postersPresentCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left"
+                android:layoutDirection="ltr"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
 
         </LinearLayout>
 

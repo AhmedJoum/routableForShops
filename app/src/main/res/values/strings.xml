@@ -31,7 +31,7 @@
     <string name="danglers"> اعلانات معلقه</string>
     <string name="wash_lines"> حبل غسيل </string>
 
-    <string-array name="adCodes">
+    <string-array name="flyersCodes">
         <item>SHB ON  </item>
         <item>SHB W F2</item>
         <item>SHB SM  </item>
@@ -62,6 +62,45 @@
         <item>EZE IT  </item>
     </string-array>
 
+    <string-array name="posterCards">
+        <item> SHB ON P1A	</item>
+        <item> SHB ON P1B	</item>
+        <item> SHB W P2A 	</item>
+        <item> SHB W P2B	</item>
+        <item> SHB SM P3A	</item>
+        <item> SHB SM P3B	</item>
+        <item> SHB MB P1	</item>
+        <item> CA P1		</item>
+        <item> MK P1		</item>
+        <item> OPA P1		</item>
+        <item> OPA P2		</item>
+        <item> EZE FNF P1A </item>
+        <item> EZE WE P1B	</item>
+        <item> EZE FNF P2A	</item>
+        <item> EZE WE P2B	</item>
+        <item> EZE P3		</item>
+        <item> EZE IW P1	</item>
+        <item> EGY P1		</item>
+        <item> ETH P1		</item>
+        <item> SRY P1		</item>
+        <item> ERT P1		</item>
+        <item> CHN P1		</item>
+        <item> 4G P1		</item>
+        <item> EID 1		</item>
+        <item> CLASS P1	</item>
+        <item> MBD P1		</item>
+        <item> None		</item>
+        <item> 4G MB P1	</item>
+        <item> DCR P1		</item>
+    </string-array>
+
+    <string-array name="danglerCards">
+        <item>4G</item>
+        <item>EZE D</item>
+        <item>SHB D</item>
+    </string-array>
+
+
     <string-array name="adQTY">
         <item>adequate			</item>
         <item>low				</item>
@@ -70,15 +109,6 @@
         <item>To be discontinued</item>
         <item>Withdrawn			</item>
     </string-array>
-
-    <string name="excellent">ممتاز</string>
-    <string name="good">جيد</string>
-    <string name="bad">سيئ</string>
-
-
-    <string name="brock">مكسورة</string>
-    <string name="cut">ممزقة</string>
-    <string name="else_">اخرى..</string>
 
 
 </resources>
