@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.shirouq_paints.controllers.OrderSavedActivity">
+    tools:context="com.yazan.roatableShops.controllers.ShopsInfoActivity">
 
     <Button
         android:id="@+id/newOrder"
@@ -18,30 +18,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/saved"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="20dp"
         android:text="انشاء طلب جديد" />
 
-    <TextView
-        android:id="@+id/saved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="79dp"
-        android:text="تم حفظ الطلب .."
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:visibility="gone" />
 
     <Button
         android:id="@+id/syncBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/syncPullBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/syncPullBtn"
-        android:layout_marginBottom="149dp"
-        android:text="Sync." />
+        android:text="Sync."
+        android:layout_below="@+id/syncPullBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/syncPullBtn"
@@ -50,30 +38,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Sync. Pull" />
-
-
-    <EditText
-        android:id="@+id/FromTB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/newOrder"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:ems="10"
-        android:hint="من"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/ToTB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/syncPullBtn"
-        android:layout_alignLeft="@+id/FromTB"
-        android:layout_alignStart="@+id/FromTB"
-        android:layout_marginBottom="16dp"
-        android:hint="الى"
-        android:ems="10"
-        android:inputType="number" />
 
 
 </RelativeLayout>
