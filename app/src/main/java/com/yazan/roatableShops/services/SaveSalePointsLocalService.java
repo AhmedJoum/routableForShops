@@ -36,8 +36,8 @@ public class SaveSalePointsLocalService extends Service {
 
     String sp_code1, sp_code2;
 
-    private static String url_sps_info = "http://consulsat.net/routableWSx/sps_get_info.aspx";
-    private static String url_shop_product_code = "http://consulsat.net/routableWSx/shop_product_code.aspx";
+    private static String url_sps_info = "";
+    private static String url_shop_product_code = "";
     private static final String TAG_SP_ID = "sp_id";
     private static final String TAG_SP_NAME = "sp_name";
     private static final String TAG_SP_TYPE = "sp_type";

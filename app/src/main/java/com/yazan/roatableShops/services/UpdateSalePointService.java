@@ -30,9 +30,9 @@ public class UpdateSalePointService extends Service {
 
     JSONParser SalePointJsonParser = new JSONParser();
 
-    private static String url_sp_update = "http://consulsat.net/routableWSx/update_salepoint.aspx";
-    private static String url_visit_update = "http://consulsat.net/routableWSx/shop_save_visite.aspx";
-    private static String url_visit_result_update = "http://consulsat.net/routableWSx/shop_save_visite_reslut.aspx";
+    private static String url_sp_update = "";
+    private static String url_visit_update = "";
+    private static String url_visit_result_update = "";
 
     public String android_id;
 

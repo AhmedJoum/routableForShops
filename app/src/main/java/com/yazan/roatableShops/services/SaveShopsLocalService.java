@@ -35,8 +35,8 @@ public class SaveShopsLocalService extends Service {
 
     JSONParser SalePointjsonParser = new JSONParser();
 
-    private static String url_shops_info = "http://consulsat.net/routableWSx/shops_get_info.aspx";
-    private static String url_shop_product_code = "http://consulsat.net/routableWSx/shop_product_code.aspx";
+    private static String url_shops_info = "";
+    private static String url_shop_product_code = "";
     private static final String TAG_SHOP_ID = "shop_id";
     private static final String TAG_SHOP_NAME = "shop_name";
     private static final String TAG_SHOP_TYPE = "shop_type";
