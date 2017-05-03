@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/roatable.iml" filepath="$PROJECT_DIR$/roatable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/roatableForShops.iml" filepath="$PROJECT_DIR$/roatableForShops.iml" />
     </modules>
   </component>
 </project>

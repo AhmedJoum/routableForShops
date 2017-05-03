@@ -25,7 +25,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:entries="@array/posterCards"
             android:textAlignment="textStart"
             android:textSize="20dp" />
 
@@ -33,17 +32,32 @@
         <!--<include-->
         <!--android:id="@+id/adType2"-->
         <!--layout="@layout/ad_type" />-->
+        <!--  android:entries="@array/flyersCodes" -->
+
+
+        <Spinner
+            android:id="@+id/ad_qty_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:entries="@array/adQTY"
+            android:textAlignment="textStart"
+            android:textDirection="rtl"
+            android:textSize="20dp" />
 
 
         <TextView
-            android:layout_height="match_parent"
-            android:layout_width="39dp"
-            android:text="x"
-            android:textSize="25dp"
-            android:textColor="#ff0000"
-            android:textAlignment="textEnd"
             android:id="@+id/deleteTV"
-            android:layout_weight="2.45" />
+            android:layout_width="39dp"
+            android:layout_height="match_parent"
+            android:text="x"
+            android:textAlignment="textEnd"
+            android:textColor="#ff0000"
+            android:textSize="25dp" />
 
     </LinearLayout>
 

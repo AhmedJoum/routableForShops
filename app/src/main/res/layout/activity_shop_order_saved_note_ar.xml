@@ -10,17 +10,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.yazan.roatableShops.controllers.ShopsInfoActivity">
 
-    <Button
-        android:id="@+id/newOrder"
+    <ProgressBar
+        android:id="@+id/StepTwo_progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:text="انشاء طلب جديد" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
+    <LinearLayout
+        android:id="@+id/syncLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
 
     <Button
         android:id="@+id/syncBtn"
@@ -29,7 +34,7 @@
         android:text="Sync."
         android:layout_below="@+id/syncPullBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_margin="15dp" />
 
     <Button
         android:id="@+id/syncPullBtn"
@@ -37,7 +42,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Sync. Pull" />
+        android:text="Sync. Pull"
+        android:layout_margin="15dp"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -21,12 +21,11 @@
             android:id="@+id/ad_code_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:entries="@array/flyersCodes"
-            android:textAlignment="textStart"
             android:textSize="20dp" />
 
 
@@ -35,15 +34,28 @@
         <!--layout="@layout/ad_type" />-->
 
 
+        <EditText
+            android:id="@+id/ad_qty_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:layout_weight="2" />
+
+
         <TextView
-            android:id="@+id/deleteTV"
-            android:layout_width="39dp"
             android:layout_height="match_parent"
+            android:layout_width="39dp"
             android:text="x"
-            android:textAlignment="textEnd"
-            android:textColor="#ff0000"
             android:textSize="25dp"
-            android:layout_weight="2.41" />
+            android:textColor="#ff0000"
+            android:textAlignment="textEnd"
+            android:id="@+id/deleteTV"
+            android:layout_weight="0.47" />
 
     </LinearLayout>
 

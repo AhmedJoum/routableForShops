@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.shirouq_paints.controllers.OrderSavedActivity">
+
+    <ProgressBar
+        android:id="@+id/StepTwo_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/syncLayout">
+
+        <Button
+            android:id="@+id/newOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:text="انشاء طلب جديد" />
+
+
+        <Button
+            android:id="@+id/syncBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/syncPullBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Sync." />
+
+        <Button
+            android:id="@+id/syncPullBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Sync. Pull" />
+
+
+        <EditText
+            android:id="@+id/FromTB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ToTB"
+            android:layout_alignLeft="@+id/ToTB"
+            android:layout_alignStart="@+id/ToTB"
+            android:layout_marginBottom="24dp"
+            android:ems="10"
+            android:hint="من"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/ToTB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/syncPullBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            android:ems="10"
+            android:hint="الى"
+            android:inputType="number" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

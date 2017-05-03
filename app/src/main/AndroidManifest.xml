@@ -10,9 +10,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -21,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.yazan.roatableShops.controllers.OrderSavedActivity"
+            android:name="com.yazan.roatableShops.controllers.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,12 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.yazan.roatableShops.controllers.ShopsInfoActivity"></activity>
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-       <!-- <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/version" /> -->
-    </application>
+        <activity android:name=".ShopsInfoActivity" android:label="@string/shop"/>
+        <activity android:name=".SalePointInfoActivity" android:label="@string/salepoint"/>
+        <activity android:name=".SalePointOrderSavedActivity"  android:label="@string/salepoint"/>
+        <activity android:name=".ShopOrderSavedActivity" android:label="@string/shop"></activity>
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
 
+        <service android:name="com.yazan.roatableShops.services.SaveShopsLocalService"/>
+        <service android:name="com.yazan.roatableShops.services.UpdateShopService"/>
+        <service android:name="com.yazan.roatableShops.services.UpdateSalePointService"/>
+        <!--
+            <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/version" />
+        -->
+    </application>
 </manifest>

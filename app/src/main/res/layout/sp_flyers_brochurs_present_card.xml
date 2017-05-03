@@ -25,7 +25,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
-            android:entries="@array/flyersCodes"
             android:textAlignment="textStart"
             android:textSize="20dp" />
 
@@ -34,20 +33,18 @@
         <!--android:id="@+id/adType2"-->
         <!--layout="@layout/ad_type" />-->
 
-
-        <Spinner
+        <EditText
             android:id="@+id/ad_qty_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
-            android:layout_weight="2"
-            android:entries="@array/adQTY"
-            android:textAlignment="textStart"
-            android:textDirection="rtl"
-            android:textSize="20dp" />
+            android:inputType="number"
+            android:layout_weight="2" />
+
 
 
         <TextView
@@ -57,7 +54,8 @@
             android:text="x"
             android:textAlignment="textEnd"
             android:textColor="#ff0000"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_weight=".41" />
 
     </LinearLayout>
 

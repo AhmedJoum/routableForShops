@@ -200,42 +200,46 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/typesOfStandsLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="right"
-        android:layoutDirection="ltr"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        <LinearLayout
+            android:id="@+id/typesOfStandsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="right"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
             <CheckBox
+                android:id="@+id/hCB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/hCB"
-                android:text="H"
-                android:layout_weight=".6"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vCB"
-            android:text="V"
-            android:layout_weight=".6"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hdCB"
-            android:text="HD"
-            android:layout_weight=".7"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vdCB"
-            android:text="VD"
-            android:layout_weight=".7"/>
+                android:layout_weight=".6"
+                android:text="H" />
+
+            <CheckBox
+                android:id="@+id/vCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:text="V" />
+
+            <CheckBox
+                android:id="@+id/hdCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:text="HD" />
+
+            <CheckBox
+                android:id="@+id/vdCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:text="VD" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/GoSync"
+        android:title="Sync"
+        />
+
+    <!-- Settings, should always be in the overflow -->
+    <item
+        android:id="@+id/GoInfo"
+        android:title="Info Page"
+        />
+
+
+    <item
+        android:id="@+id/GoMain"
+        android:title="Home"
+        />
+</menu>
